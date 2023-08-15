@@ -1,0 +1,5058 @@
+focus_tree = {
+	id = nw_COG_focus
+	
+	country = {
+		factor = 0
+		modifier = {
+			add = 11
+			original_tag = COG
+		}
+	}
+	continuous_focus_position = { x = 100 y = 1800 }
+	
+	default = no
+	
+	#reset_on_civil_war = no
+	
+	focus = {
+		id = Введение_нового_социального_класса # COG_create_a_new_social_class
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		x = 23
+		y = 0
+		completion_reward = {
+			set_temp_variable = { COG_evolues_gain_var = 1 }
+			add_ideas = COG_assimilation_of_congolese
+			custom_effect_tooltip = COG_create_a_new_social_class_tt
+			unlock_decision_category_tooltip = COG_create_new_social_class_category
+		}
+	}
+	
+	# Промышленность и Военка [
+	
+	focus = {
+		id = Объединение_исследовательских_служб_INEAC
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		x = 8
+		y = 0
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = COG_poor_education_of_congolese
+				add_idea = COG_poor_education_of_congolese_1
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = COG_INEAC
+			if = {
+				limit = { has_character = COG_auguste_tilkens }
+				custom_effect_tooltip = available_political_advisor
+				show_ideas_tooltip = COG_auguste_tilkens
+			}
+		}
+	}
+	focus = {
+		id = Модернизация_сельского_хозяйства
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Забрать_пустые_земли
+		}
+		prerequisite = {
+			focus = Объединение_исследовательских_служб_INEAC
+		}
+		x = 0
+		y = 1
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			unlock_decision_category_tooltip = COG_agricultural_reform
+		}
+	}
+	focus = {
+		id = Забрать_пустые_земли
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		x = 5
+		y = 0
+		completion_reward = {
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				#unlock_decision_tooltip = COG_take_land_from_tribes !
+				custom_effect_tooltip = unlock_decision_COG_take_land_from_tribes_tt
+			}
+		}
+	}
+	focus = {
+		id = Добыча_каучука
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Забрать_пустые_земли
+		}
+		x = -2
+		y = 1
+		available = {
+			has_completed_focus = Модернизация_сельского_хозяйства
+		}
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			add_tech_bonus = {
+				#name = MAN_purchase_german_licenses
+				bonus = 1
+				uses = 1
+				category = synth_resources # synth_resources cat_synth_oil synth_oil_res
+			}
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				#unlock_decision_tooltip = COG_expand_plantations_of_lianas !
+				custom_effect_tooltip = unlock_decision_COG_expand_plantations_of_lianas_tt
+			}
+		}
+	}
+	focus = {
+		id = Добыча_пальмового_масла
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Забрать_пустые_земли
+		}
+		x = -4
+		y = 1
+		available = {
+			has_completed_focus = Модернизация_сельского_хозяйства
+		}
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			add_tech_bonus = {
+				#name = MAN_purchase_german_licenses
+				bonus = 1
+				uses = 1
+				category = synth_resources # synth_resources cat_synth_oil synth_oil_res
+			}
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				#unlock_decision_tooltip = COG_plant_new_palm_trees !
+				custom_effect_tooltip = unlock_decision_COG_plant_new_palm_trees_tt
+			}
+		}
+	}
+	focus = {
+		id = Добыча_хлопка #COG_cotton_extraction
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Забрать_пустые_земли
+		}
+		x = -6
+		y = 1
+		available = {
+			has_completed_focus = Модернизация_сельского_хозяйства
+		}
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			custom_effect_tooltip = COG_cotton_extraction_tt
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				#unlock_decision_tooltip = COG_expand_cotton_plantations !
+				custom_effect_tooltip = unlock_decision_COG_expand_cotton_plantations_tt
+			}
+			#hidden_effect = {
+				country_event = { id = congo.14 days = 70 }
+				country_event = { id = congo.15 days = 280 }
+			#}
+		}
+	}
+	focus = {
+		id = Хлопковые_дороги #COG_cotton_roads
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Добыча_хлопка
+		}
+		x = -7
+		y = 3
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			custom_effect_tooltip = COG_cotton_roads_tt
+			# Решение: «Расширить хлопковые плантации» получит дополнительный эффект: в очередь строительства ЭТОГО стейта будет добавлена дорога, прогресс которой будет сразу же добавится до середины, если же эта дорога уже есть в очереди, очки прогресса строительства добавятся к ней. +
+			#hidden_effect = {
+				if = {
+					limit = { NOT = { has_completed_focus = Отмена_налогов } }
+					country_event = { id = congo.16 days = 30 }
+				}
+			#}
+		}
+	}
+	focus = {
+		id = Программа_местных_фермеров #COG_local_farmers_program
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Модернизация_сельского_хозяйства
+		}
+		x = 0
+		y = 2
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			custom_effect_tooltip = COG_local_farmers_program_tt
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				custom_effect_tooltip = unlock_decision_COG_local_farmers_program_tt
+			}
+			unlock_decision_tooltip = COG_introduce_rules_of_agriculture #?
+		}
+	}
+	focus = {
+		id = Распространение_новых_сортов_сои #COG_plant_new_soybean_varieties
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Модернизация_сельского_хозяйства
+		}
+		x = -2
+		y = 2
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			custom_effect_tooltip = COG_plant_new_soybean_varieties_tt
+			activate_mission_tooltip = COG_plant_new_soybean_varieties_mission
+			#hidden_effect = {
+				random_controlled_state = {
+					limit = { 
+						is_original_congo_state = yes
+						has_state_flag = COG_local_farmers_program_flag
+						NOT = { has_dynamic_modifier = { modifier = COG_new_varieties_of_soybeans } }
+					}
+					ROOT = { 
+						activate_targeted_decision = { target = PREV decision = COG_plant_new_soybean_varieties_mission }
+						set_country_flag = COG_plant_new_soybean_varieties_flag
+					}
+				}
+			#}
+		}
+	}
+	focus = {
+		id = Культивация_кофе #COG_coffee_cultivation
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Модернизация_сельского_хозяйства
+		}
+		x = -4
+		y = 2
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			custom_effect_tooltip = COG_coffee_cultivation_tt
+			add_dynamic_modifier = { modifier = COG_congolese_coffee }
+			unlock_decision_tooltip = COG_coffee_for_army
+			unlock_decision_tooltip = COG_coffee_for_export
+			unlock_decision_tooltip = COG_coffee_for_workers
+		}
+	}
+	focus = {
+		id = Расширить_экспорт_внутренней_продукции #COG_expand_export_of_domestic_products
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Расширение_порта_Матади
+		}
+		prerequisite = {
+			focus = Культивация_кофе
+		}
+		x = -5
+		y = 3
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			custom_effect_tooltip = COG_expand_export_of_domestic_products_tt
+			add_dynamic_modifier = { modifier = COG_export_of_domestic_products }
+			add_to_variable = { COG_edp_political_power_factor = 0.05 tooltip = political_power_factor_tooltip }
+			add_to_variable = { COG_edp_min_export = 0.05 tooltip = min_export_tooltip }
+			unlock_decision_category_tooltip = COG_export_of_domestic_products_category
+		}
+	}
+	focus = {
+		id = Расширение_порта_Матади
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		x = -6
+		y = 2
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			295 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+					province = 10968
+				}
+			}
+		}
+	}
+	focus = {
+		id = Расширить_школьное_образование
+		icon = GFX_goal_generic_production
+		cost = 7.15 #10?
+		prerequisite = {
+			focus = Объединение_исследовательских_служб_INEAC
+		}
+		select_effect = {
+			add_ideas = COG_expand_school_education_idea
+		}
+		x = 2
+		y = 1
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			#Tooltip purposes (Select Effect)
+			custom_effect_tooltip = COG_focus_select_effect_tt #? SOV_focus_select_effect_tt
+			effect_tooltip = {
+				add_ideas = COG_expand_school_education_idea
+			}
+
+			#(Complete Effect)
+			custom_effect_tooltip = COG_focus_complete_effect_tt #? SOV_focus_complete_effect_tt
+			hidden_effect = { remove_ideas = COG_expand_school_education_idea }
+			swap_ideas = {
+				remove_idea = COG_poor_education_of_congolese_1
+				add_idea = COG_poor_education_of_congolese_2
+			}
+			custom_effect_tooltip = COG_assimilation_of_congolese_update
+			add_to_variable = { COG_evolues_gain_var = 1 tooltip = COG_evolues_gain_tooltip }
+			custom_effect_tooltip = empty_line_tooltip
+			
+			every_core_state = {
+				limit = { is_controlled_by = COG }
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+			#effect_tooltip = {
+			#	set_variable = { timer = 90 tooltip = timer_tootip } #custom_effect_tooltip = ETH_domestication_of_warthogs_tt OR in_n_days_tt !
+			#}
+		}
+	}
+	focus = {
+		id = Создание_медицинского_факультета
+		icon = GFX_goal_generic_production
+		cost = 7.15 #10?
+		prerequisite = {
+			focus = Расширить_школьное_образование
+		}
+		x = 2
+		y = 2
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			add_research_slot = 1
+			295 = {
+				add_building_construction = {
+					type = hospital
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = COG_poor_education_of_congolese_2
+				add_idea = COG_poor_education_of_congolese_3
+			}
+			if = {
+				limit = { has_dynamic_modifier = { modifier = COG_tropical_diseases } }
+				custom_effect_tooltip = COG_tropical_diseases_tooltip
+				add_to_variable = { COG_td_monthly_population = 0.1 tooltip = monthly_population_tooltip }
+				add_to_variable = { COG_td_stability_factor = 0.025 tooltip = stability_factor_tooltip }
+				#custom_effect_tooltip = empty_line_tooltip
+			}
+		}
+	}
+	focus = {
+		id = Создание_больничных_диспансеров # COG_creation_of_hospitals name ?
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Забрать_пустые_земли
+		}
+		prerequisite = {
+			focus = Создание_медицинского_факультета
+		}
+		x = -3
+		y = 3
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			custom_effect_tooltip = COG_creation_of_hospitals_tt
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				custom_effect_tooltip = unlock_decision_COG_build_hospital_tt
+			}
+		}
+	}
+	focus = {
+		id = Военно_морская_верфь_Банана
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Расширение_порта_Матади
+		}
+		x = -6
+		y = 4
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			295 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = Подготовка_к_войне_на_море_НАШЕ
+		icon = GFX_goal_generic_amphibious_assault
+		cost = 7.15
+		x = -4
+		y = 4
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		#available = {
+		#	any_owned_state = {
+		#		is_coastal = yes
+		#	}
+		#}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_war_in_sea"
+			navy_experience = 15
+			add_doctrine_cost_reduction = {
+				uses = 1
+				cost_reduction = 0.5
+				category = naval_doctrine
+				name = COG_war_in_sea
+			}
+		}
+	}
+	focus = {
+		id = Разработка_малого_флота_НАШЕ
+		icon = GFX_focus_generic_destroyer
+		cost = 7.15
+		prerequisite = {
+			focus = Военно_морская_верфь_Банана
+		}
+		prerequisite = {
+			focus = Подготовка_к_войне_на_море_НАШЕ
+		}
+		x = -7
+		y = 5
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_small_fleet_development"
+			add_tech_bonus = {
+				name = COG_small_fleet_development
+				bonus = 1.0
+				uses = 1
+				category = dd_tech
+			}
+		}
+	}
+	focus = {
+		id = Расширение_торгового_флота_НАШЕ
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 7.15
+		prerequisite = {
+			focus = Военно_морская_верфь_Банана
+		}
+		prerequisite = {
+			focus = Подготовка_к_войне_на_море_НАШЕ
+		}
+		x = -5
+		y = 5
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_expansion_merchant_fleet"
+			add_equipment_to_stockpile = {
+			    type = convoy
+			    amount = 300
+		    }
+	    }
+	}
+	focus = {
+		id = Разработка_крупного_флота_НАШЕ
+		icon = GFX_focus_generic_navy_battleship2
+		cost = 7.15
+		prerequisite = {
+			focus = Подготовка_к_войне_на_море_НАШЕ
+		}
+		prerequisite = {
+			focus = Военно_морская_верфь_Банана
+		}
+		x = -3
+		y = 5
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_development_large_fleet"
+			add_tech_bonus = {
+				name = COG_development_large_fleet
+				bonus = 1.0
+				uses = 1
+				category = bc_tech
+				category = bb_tech
+				category = cv_tech
+			}
+		}
+	}
+	focus = {
+		id = Выслеживание_чужих_конвоев_НАШЕ
+		icon = GFX_goal_generic_navy_submarine
+		cost = 7.15
+		prerequisite = {
+			focus = Разработка_малого_флота_НАШЕ
+			focus = Расширение_торгового_флота_НАШЕ
+		}
+		x = -6
+		y = 6
+		relative_position_id = Объединение_исследовательских_служб_INEAC
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_stalking_other_convoys"
+			add_tech_bonus = {
+				name = COG_stalking_other_convoys
+				bonus = 1.0
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+	focus = {
+		id = Union_Minière_du_Haut_Katanga
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		x = 8
+		y = 4
+		completion_reward = {
+			#if = { #?
+			#	limit = { is_left_ideology = no } #?
+				custom_effect_tooltip = COG_union_miniere_du_haut_katanga_tt
+				#hidden_effect = {
+					country_event = { id = congo.17 days = 35 }
+				#}
+			#}
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = Горнодобывающая_промышленность_медного_пояса
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Union_Minière_du_Haut_Katanga
+		}
+		available = {
+			has_tech = excavation1
+		}
+		x = -1
+		y = 1
+		relative_position_id = Union_Minière_du_Haut_Katanga
+		completion_reward = {
+			add_tech_bonus = {
+				#name = MAN_increase_rice_plantations
+				bonus = 1
+				uses = 2
+				category = excavation_tech
+			}
+			1065 = {
+				add_resource = {
+					type = steel
+					amount = 26
+				}
+			}
+		}
+	}
+	focus = {
+		id = Железнодорожная_линия_Вичиконго
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Горнодобывающая_промышленность_медного_пояса
+		}
+		x = -3
+		y = 2
+		relative_position_id = Union_Minière_du_Haut_Katanga
+		completion_reward = {
+		    # убрать текущ дорогу на карте ? !(да)
+			build_railway = {
+				level = 1
+				fallback = yes #?
+				path = { 2154 6027 12808 2073 11934 }
+				start_province = 2154 # 6027
+				target_province = 11934
+				# start_state = 1065
+				# target_state = 886
+			}
+			718 = {
+				add_building_construction = {
+					type = supply_node
+					level = 1
+					instant_build = yes
+					province = 2073 # 2154
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = train_equipment_1
+				amount = 25
+			}
+		}
+	}
+	focus = { # !
+		id = COG_african_urbanization #Африканская_урбанизация_НАШЕ
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Железнодорожная_линия_Вичиконго
+		}
+		x = -3
+		y = 3
+		relative_position_id = Union_Minière_du_Haut_Katanga
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_african_urbanization"
+			custom_effect_tooltip = state_urbanization_tt #?
+			#hidden_effect = {
+				add_dynamic_modifier = { modifier = COG_state_urbanization_idea }
+			#}
+		}
+	}
+	focus = {
+		id = Нарастить_добычу_в_шахтах_Катанги # COG_increase_production_in_katanga_mines
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Горнодобывающая_промышленность_медного_пояса
+		}
+		available = {
+			has_tech = excavation2
+		}
+		x = -1
+		y = 2
+		relative_position_id = Union_Minière_du_Haut_Katanga
+		completion_reward = { #??
+			# custom_effect_tooltip = COG_increase_production_in_katanga_mines_tt !
+			add_ideas = COG_accelerated_mining
+		}
+	}
+	focus = {
+		id = Институт_исследований_Центральной_Африки
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Нарастить_добычу_в_шахтах_Катанги
+		}
+		available = {
+			has_completed_focus = Создание_медицинского_факультета
+			num_of_civilian_factories > 14
+		}
+		x = -1
+		y = 3
+		relative_position_id = Union_Minière_du_Haut_Katanga
+		completion_reward = {
+			add_research_slot = 1
+			remove_ideas = COG_poor_education_of_congolese_3 #?
+			custom_effect_tooltip = COG_assimilation_of_congolese_update
+			add_to_variable = { COG_evolues_gain_var = 1 tooltip = COG_evolues_gain_tooltip }
+			#custom_effect_tooltip = empty_line_tooltip
+		}
+	}
+	focus = {
+		id = Механизация_производства_шахт # COG_mechanization_of_mine_production
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Горнодобывающая_промышленность_медного_пояса
+		}
+		x = 1
+		y = 2
+		relative_position_id = Union_Minière_du_Haut_Katanga
+		completion_reward = {
+			custom_effect_tooltip = COG_mechanization_of_mine_production_tt
+			add_tech_bonus = {
+				#name = MAN_purchase_german_licenses
+				bonus = 1
+				uses = 1
+				category = cat_production # ?
+			}
+			unlock_decision_category_tooltip = COG_mechanization_of_mines
+		}
+	}
+	focus = {
+		id = Открытие_Musonoi_Principal
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Механизация_производства_шахт
+		}
+		available = {
+			has_tech = excavation3
+		}
+		x = 1
+		y = 3
+		relative_position_id = Union_Minière_du_Haut_Katanga
+		completion_reward = {
+			1065 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = tungsten
+					amount = 18
+				}
+				add_resource = {
+					type = chromium
+					amount = 18
+				}
+				add_resource = {
+					type = aluminium
+					amount = 24
+				}
+			}
+		}
+	}
+	focus = {
+		id = Строительство_плотин_Инга # COG_build_inga_dams
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Union_Minière_du_Haut_Katanga
+		}
+		x = 1
+		y = 1
+		relative_position_id = Union_Minière_du_Haut_Katanga
+		completion_reward = {
+			custom_effect_tooltip = COG_build_inga_dams_tt
+			#unlock_decision_category_tooltip = COG_construction_of_dams
+			unlock_decision_tooltip = COG_build_inga_dam
+		}
+	}
+	focus = {
+		id = Строительство_гидроэлектростанций # COG_build_of_hpps name ?
+		icon = GFX_goal_generic_production
+		cost = 7.15
+		prerequisite = {
+			focus = Строительство_плотин_Инга
+		}
+		x = 2
+		y = 4
+		relative_position_id = Union_Minière_du_Haut_Katanga
+		completion_reward = {
+			custom_effect_tooltip = COG_build_of_hpps_tt
+			unlock_decision_tooltip = COG_build_power_plant_on_inga_dam
+		}
+	}
+	
+	focus = {
+		id = Force_Publique
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		x = 5
+		y = 8
+		completion_reward = {
+			army_experience = 10
+			add_ideas = COG_force_publique
+		}
+	}
+	focus = {
+		id = Нарастить_производство_транспорта
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Force_Publique
+		}
+		x = -4
+		y = 2
+		relative_position_id = Force_Publique
+		completion_reward = {
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_equipment_production = { #if ??
+				equipment = {
+					type = motorized_equipment_1
+					creator = "BEL"
+				}
+				requested_factories = 1
+				progress = 0.4
+				efficiency = 50
+			}
+		}
+	}
+	focus = {
+		id = Война_в_африканских_условиях_НАШЕ
+		icon = GFX_z_goal_desert_officers
+		cost = 7.15
+		prerequisite = {
+			focus = Force_Publique
+		}
+		x = -3
+		y = 1
+		relative_position_id = Force_Publique
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_war_in_africa"
+			add_ideas = COG_war_in_africa
+			custom_effect_tooltip = RAJ_jungle_training_effect
+			hidden_effect = { set_technology = { jungle_warfare = 1 } }
+			custom_effect_tooltip = nn_tt #empty_line_tooltip ?? !
+			custom_effect_tooltip = desert_training_effect
+			hidden_effect = { set_technology = { desert_warfare = 1 } }
+			custom_effect_tooltip = nn_tt
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = special_forces_tech
+				name = COG_war_in_africa
+			}
+		}
+	}
+	focus = {
+		id = Сохранить_белых_офицеров
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Force_Publique
+		}
+		mutually_exclusive = {
+			focus = Набрать_офицеров_из_чернокожих
+		}
+		available = {
+			NOT = { has_completed_focus = Доминируй_чтобы_служить }
+			is_left_ideology = no
+		}
+		x = -1
+		y = 1
+		relative_position_id = Force_Publique
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = COG_force_publique
+				add_idea = COG_force_publique_1
+			}
+		}
+	}
+	focus = {
+		id = Набрать_офицеров_из_чернокожих
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Force_Publique
+		}
+		mutually_exclusive = {
+			focus = Сохранить_белых_офицеров
+		}
+		available = {
+			OR = {
+				has_completed_focus = Доминируй_чтобы_служить
+				is_left_ideology = yes
+			}
+		}
+		x = 1
+		y = 1
+		relative_position_id = Force_Publique
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = COG_force_publique
+				add_idea = COG_force_publique_2
+			}
+		}
+	}
+	focus = {
+		id = Использовать_радарные_системы_в_армии
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Force_Publique
+		}
+		x = 3
+		y = 1
+		relative_position_id = Force_Publique
+		completion_reward = {
+			if = {
+				limit = {
+					has_tech = radio
+				}
+				add_tech_bonus = {
+					bonus = 1
+					uses = 1
+					category = electronics
+					#name = COG_war_in_africa
+				}
+			}
+			else = {
+				set_technology = { radio = 1 }
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = radar_tech
+				#name = COG_war_in_africa
+			}
+		}
+	}
+	focus = {
+		id = Aviation_militaire_de_la_Force_Publique
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Force_Publique
+		}
+		x = 5
+		y = 1
+		relative_position_id = Force_Publique
+		bypass = {
+			NOT = { has_dlc = "La Resistance" } #??
+		}
+		completion_reward = {
+			if = { #?? !
+				limit = {
+					capital_scope = {
+						NOT = {
+							free_building_slots = {
+								building = air_base
+								size > 0
+							}
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = air_base
+							size > 0
+						}
+					}
+					add_building_construction = {
+						type = air_base #5117 провинции (столице) !!
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					capital_scope = {
+						free_building_slots = {
+							building = air_base
+							size > 0
+						}
+					}
+				}
+				capital_scope = {
+					add_building_construction = {
+						type = air_base
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			
+			if = {
+				limit = { has_dlc = "By Blood Alone" }
+				set_technology = {
+					iw_medium_airframe = 1
+					photo_reconnaisance = 1
+				}
+				create_equipment_variant = { #?
+					name = "Type 91" #name ?
+					type = medium_plane_scout_plane_airframe_0
+					allow_without_tech = yes
+					modules = {
+						fixed_main_weapon_slot = recon_camera
+						engine_type_slot = engine_1_2x
+						special_type_slot_1 = fuel_tanks_medium
+					}
+				}
+				add_equipment_to_stockpile = { 
+					type = medium_plane_scout_plane_airframe_0 
+					amount = 10
+				}
+			}
+			else = {
+				set_technology = {
+					scout_plane1 = 1
+				}
+				add_equipment_to_stockpile = {
+					type = scout_plane_equipment_1 #?
+					amount = 10 
+				}
+			}
+		}
+	}
+	focus = {
+		id = Воздушное_снабжение
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Использовать_радарные_системы_в_армии
+		}
+		prerequisite = {
+			focus = Aviation_militaire_de_la_Force_Publique
+		}
+		x = 4
+		y = 2
+		relative_position_id = Force_Publique
+		completion_reward = {
+			#set_technology = {
+			#	scout_plane1 = 1
+			#}
+			add_equipment_to_stockpile = {
+				type = transport_plane_equipment_1 #?
+				amount = 10
+			}
+			add_ideas = COG_avimil
+		}
+	}
+	focus = {
+		id = Расширить_аэропорт_Н_Доло_в_Леопольдвиле
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Aviation_militaire_de_la_Force_Publique
+		}
+		x = 6
+		y = 2
+		relative_position_id = Force_Publique
+		completion_reward = {
+			if = { #?? !
+				limit = {
+					capital_scope = {
+						NOT = {
+							free_building_slots = {
+								building = air_base
+								size > 1
+							}
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+					add_building_construction = {
+						type = air_base #5117 провинции (столице) !!
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					capital_scope = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+				}
+				capital_scope = {
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Обучить_гражданских_пилотов_НАШЕ
+		icon = GFX_focus_generic_military_academy
+		cost = 7.15
+		prerequisite = {
+			focus = Aviation_militaire_de_la_Force_Publique
+		}
+		x = 5
+		y = 3
+		relative_position_id = Force_Publique
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_train_civilian_pilots"
+			air_experience = 5
+			add_doctrine_cost_reduction = {
+				name = COG_train_civilian_pilots
+				cost_reduction = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+		id = DH_85_Leopard_Moth_НАШЕ
+		icon = GFX_focus_chi_flying_tigers
+		cost = 7.15
+		prerequisite = {
+			focus = Обучить_гражданских_пилотов_НАШЕ
+		}
+		x = 4
+		y = 4
+		relative_position_id = Force_Publique
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_dh85_leopard_moth"
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = light_fighter
+				name = COG_dh85_leopard_moth
+			}
+		}
+	}
+	focus = {
+		id = Развитие_озерных_истребителей_и_бомбардировщиков
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Обучить_гражданских_пилотов_НАШЕ
+		}
+		x = 6
+		y = 4
+		relative_position_id = Force_Publique
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "By Blood Alone" }
+				if = {
+					limit = { NOT = { has_tech = iw_small_airframe } }
+					set_technology = {
+						iw_small_airframe = 1
+					}
+				}
+				else = {
+					add_tech_bonus = {
+						bonus = 1
+						uses = 1
+						category = light_fighter
+						#name = COG_dh85_leopard_moth
+					}
+				}
+				if = {
+					limit = { NOT = { has_tech = iw_medium_airframe } }
+					set_technology = {
+						iw_medium_airframe = 1
+					}
+				}
+				else = {
+					add_tech_bonus = {
+						bonus = 1
+						uses = 1
+						category = tactical_bomber
+						#name = COG_dh85_leopard_moth
+					}
+				}
+				create_equipment_variant = { #?
+					name = "Type 91" #name ?
+					type = small_plane_airframe_0
+					allow_without_tech = yes
+					modules = {
+						fixed_main_weapon_slot = light_mg_4x
+						engine_type_slot = engine_1_1x
+					}
+				}
+				create_equipment_variant = { #?
+					name = "Type 91" #name ?
+					type = medium_plane_airframe_0
+					allow_without_tech = yes
+					modules = {
+						fixed_main_weapon_slot = medium_bomb_bay
+						engine_type_slot = engine_1_2x
+					}
+				}
+				add_equipment_to_stockpile = { 
+					type = small_plane_airframe_0 
+					amount = 5
+				}
+				add_equipment_to_stockpile = { 
+					type = medium_plane_airframe_0 
+					amount = 5
+				}
+			}
+			else = {
+				if = {
+					limit = { NOT = { has_tech = early_fighter } }
+					set_technology = {
+						early_fighter = 1
+					}
+				}
+				else = {
+					add_tech_bonus = {
+						bonus = 1
+						uses = 1
+						category = light_fighter
+						#name = COG_dh85_leopard_moth
+					}
+				}
+				if = {
+					limit = { NOT = { has_tech = early_bomber } }
+					set_technology = {
+						early_bomber = 1
+					}
+				}
+				else = {
+					add_tech_bonus = {
+						bonus = 1
+						uses = 1
+						category = tactical_bomber
+						#name = COG_dh85_leopard_moth
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = fighter_equipment_0
+					amount = 5
+				}
+				add_equipment_to_stockpile = {
+					type = tac_bomber_equipment_0
+					amount = 5
+				}
+			}
+		}
+	}
+	focus = {
+		id = Compagnie_d_Artillerie_et_de_Génie
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Force_Publique
+		}
+		x = -2
+		y = 2
+		relative_position_id = Force_Publique
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = artillery
+				#name = COG_dh85_leopard_moth
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = maintenance_company_tech
+				#name = COG_dh85_leopard_moth
+			}
+		}
+	}
+	focus = {
+		id = focus_10_я_станция_по_оказанию_помощи_пострадавшим
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Force_Publique
+		}
+		x = 2
+		y = 2
+		relative_position_id = Force_Publique
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = hospital_tech
+				#name = COG_dh85_leopard_moth
+			}
+			# technology !
+		}
+	}
+	focus = {
+		id = Использование_бельгийского_вооружения_НАШЕ
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Force_Publique
+		}
+		x = 0
+		y = 2
+		relative_position_id = Force_Publique
+		completion_reward = {
+    		log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_belgium_weapon"
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = infantry_weapons
+				name = COG_belgium_weapon
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1200
+				producer = BEL
+			}
+		}
+	}
+	focus = {
+		id = Дивизион_Катанги
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Использование_бельгийского_вооружения_НАШЕ
+		}
+		x = 0
+		y = 3
+		relative_position_id = Force_Publique
+		completion_reward = {
+			set_technology = { bicycle_infantry = 1 }
+			division_template = {
+				name = "Troupes de Katanga"
+				priority = 1
+				template_counter = 3
+				regiments = {
+					bicycle_battalion = { x = 0 y = 0 }
+					bicycle_battalion = { x = 0 y = 1 }
+				}
+			}
+			1065 = {
+				create_unit = {
+					division = "name = \"Troupes de Katanga\" division_template = \"Troupes de Katanga\" start_experience_factor = 0.1 start_equipment_factor = 0.95" owner = PREV count = 1
+				}
+			}
+		}
+	}
+	focus = {
+		id = Расширение_территориальных_вооруженных_сил
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Использование_бельгийского_вооружения_НАШЕ
+		}
+		x = -2
+		y = 3
+		relative_position_id = Force_Publique
+		completion_reward = {
+			if = {
+				limit = { has_idea = COG_volunteer_divisions }
+				swap_ideas = {
+					remove_idea = COG_volunteer_divisions
+					add_idea = COG_territorial_and_volunteer_divisions
+				}
+			}
+			else = {
+				add_ideas = COG_territorial_forces
+			}
+		}
+	}
+	focus = {
+		id = Расширить_набор_в_добровольческие_дивизии
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Использование_бельгийского_вооружения_НАШЕ
+		}
+		x = 2
+		y = 3
+		relative_position_id = Force_Publique
+		completion_reward = {
+			if = {
+				limit = { has_idea = COG_territorial_forces }
+				swap_ideas = {
+					remove_idea = COG_territorial_forces
+					add_idea = COG_territorial_and_volunteer_divisions
+				}
+			}
+			else = {
+				add_ideas = COG_volunteer_divisions
+			}
+		}
+	}
+	focus = {
+		id = Перенести_часть_Бельгийской_военной_промышленности
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Использование_бельгийского_вооружения_НАШЕ
+		}
+		available = {
+			BEL = { has_capitulated = yes }
+			is_subject_of = BEL
+		}
+		x = -1
+		y = 4
+		relative_position_id = Force_Publique
+		completion_reward = {
+			random_owned_controlled_state = { #??
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = Создание_собственной_военной_промышленности
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 7.15
+		prerequisite = {
+			focus = Использование_бельгийского_вооружения_НАШЕ
+		}
+		available = {
+			is_subject = no
+		}
+		x = 1
+		y = 4
+		relative_position_id = Force_Publique
+		completion_reward = {
+			random_owned_controlled_state = { #??
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	# ]
+	
+	# Исторические Фокусы [
+	
+	focus = {
+		id = Создание_профсоюзов_для_белых
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Введение_нового_социального_класса
+		}
+		mutually_exclusive = {
+			focus = Доминируй_чтобы_служить
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = COG_evolues_var_less_than_3000 #??
+				check_variable = { COG_evolues_var < 3000 }
+			}
+		}
+		x = -2
+		y = 1
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_ideas = COG_white_unions
+			if = {
+				limit = { has_character = COG_georges_livens }
+				custom_effect_tooltip = available_political_advisor
+				show_ideas_tooltip = COG_georges_livens
+			}
+		}
+	}
+	focus = {
+		id = Вернуть_принудительный_труд
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Создание_профсоюзов_для_белых
+		}
+		available = {
+			is_left_ideology = no
+		}
+		x = -6
+		y = 2
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_ideas = COG_forced_labor
+		}
+	}
+	focus = {
+		id = Привлечь_сельских_жителей_к_работам
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Создание_профсоюзов_для_белых
+		}
+		available = {
+			is_left_ideology = no
+		}
+		x = -4
+		y = 2
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			every_core_state = {
+				limit = { is_controlled_by = COG }
+				add_resource = {
+					type = rubber
+					amount = 5
+				}
+			}
+			add_ideas = COG_forced_labor_for_peasants
+		}
+	}
+	focus = {
+		id = Увеличить_военный_налог
+		icon = GFX_goal_generic_demand_territory
+		cost = 5
+		prerequisite = {
+			focus = Создание_профсоюзов_для_белых
+		}
+		available = {
+			OR = {
+				if = { #?
+					limit = { is_subject = yes }
+					OVERLORD = { has_war = yes }
+				}
+				has_war = yes
+			}
+		}
+		x = -2
+		y = 2
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_ideas = COG_high_military_tax
+		}
+	}
+	focus = {
+		id = Лояльность_действующему_правительству
+		icon = GFX_goal_generic_demand_territory
+		cost = 5
+		prerequisite = {
+			focus = Увеличить_военный_налог
+		}
+		mutually_exclusive = {
+			focus = Подчиниться_новому_правительству_Брюсселя
+			focus = Провозгласить_государство_рабочих
+		}
+		x = -10
+		y = 3
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_country_leader_trait = special_powers
+		}
+	}
+	focus = {
+		id = Стремление_к_освобождению_Эфиопии_НАШЕ
+		icon = GFX_z_goal_cog_liberate_ethiopia
+		cost = 10
+		prerequisite = {
+			focus = Экономическое_соглашение_с_Великобританией
+		}
+		x = 2
+		y = 3
+		relative_position_id = Лояльность_действующему_правительству
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_desire_liberate_ethiopia"
+			add_ideas = COG_desire_liberate_ethiopia
+			add_ai_strategy = { #??
+				type = protect
+				id = "ETH"
+				value = 200
+			}
+		}
+	}
+	focus = {
+		id = Провести_реструктуризацию
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Лояльность_действующему_правительству
+			focus = Подчиниться_новому_правительству_Брюсселя
+		}
+		x = 2
+		y = 1
+		relative_position_id = Лояльность_действующему_правительству
+		completion_reward = {
+			#+10% текущей эффективности производства.
+			add_ideas = COG_restructurization
+		}
+	}
+	focus = {
+		id = Совместные_исследования_НАШЕ
+		icon = GFX_goal_generic_scientific_exchange
+		cost = 10
+		prerequisite = {
+			focus = Провести_реструктуризацию
+		}
+		available = {
+			is_in_faction = yes
+		}
+		x = 2
+		y = 2
+		relative_position_id = Лояльность_действующему_правительству
+		completion_reward = {
+    		log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_belgium_research_group"
+			add_to_tech_sharing_group = COG_research_group #?
+			var:faction_leader = { add_to_tech_sharing_group = COG_research_group } #??
+			add_research_slot = 1 #?
+		}
+	}
+	focus = {
+		id = Продать_запасы_урана_в_США
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Лояльность_действующему_правительству
+		}
+		available = {
+			USA = {
+				exists = yes #?
+				has_government = democratic
+			}
+		}
+		x = -2
+		y = 1
+		relative_position_id = Лояльность_действующему_правительству
+		completion_reward = { #?
+			add_political_power = 200
+			USA = { country_event = congo.29 }
+		}
+	}
+	focus = {
+		id = Профинансировать_железнодорожные_пути_до_портов
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Продать_запасы_урана_в_США
+		}
+		available = {
+			#?
+			USA = {
+				exists = yes #?
+				has_government = democratic
+			}
+		}
+		x = -2
+		y = 2
+		relative_position_id = Лояльность_действующему_правительству
+		completion_reward = {
+			build_railway = { #???
+				level = 1
+				#fallback = yes #?
+				start_state = 1065
+				target_state = 295
+			}
+		}
+	}
+	focus = {
+		id = Расширение_воздушного_сообщения
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Профинансировать_железнодорожные_пути_до_портов
+		}
+		available = {
+			#?
+			USA = {
+				exists = yes #?
+				has_government = democratic
+			}
+		}
+		x = -2
+		y = 3
+		relative_position_id = Лояльность_действующему_правительству
+		completion_reward = {
+			if = {
+				limit = {
+					295 = { #capital_scope
+						free_building_slots = {
+							building = air_base
+							size > 0
+						}
+					}
+				}
+				295 = {
+					add_building_construction = {
+						type = air_base
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					1065 = {
+						free_building_slots = {
+							building = air_base
+							size > 0
+						}
+					}
+				}
+				1065 = { #аэропорт в элизабетвиль !
+					add_building_construction = {
+						type = air_base
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			#else ?
+		}
+	}
+	focus = {
+		id = Девальвация_Конголезского_франка
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Лояльность_действующему_правительству
+		}
+		x = 0
+		y = 1
+		relative_position_id = Лояльность_действующему_правительству
+		completion_reward = {
+			add_timed_idea = { idea = COG_devaluation_of_currency days = 1460 }
+		}
+	}
+	focus = {
+		id = Экономическое_соглашение_с_Великобританией
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Девальвация_Конголезского_франка
+		}
+		available = {
+			is_in_faction_with = ENG
+			is_subject_of = BEL #?
+		}
+		x = 0
+		y = 2
+		relative_position_id = Лояльность_действующему_правительству
+		completion_reward = {
+			swap_ideas = { #изменить цвета ?
+				remove_idea = COG_all_benefits_to_metropolis
+				add_idea = COG_all_benefits_to_metropolis_ENG
+			}
+			add_ideas = COG_economic_agreement_with_ENG
+		}
+	}
+	focus = {
+		id = Вход_экономики_в_области_стерлингов
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Экономическое_соглашение_с_Великобританией
+		}
+		available = {
+			is_in_faction_with = ENG
+			is_subject_of = BEL #?
+		}
+		x = 0
+		y = 3
+		relative_position_id = Лояльность_действующему_правительству
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = COG_economic_agreement_with_ENG
+				add_idea = COG_economic_agreement_with_ENG_1
+			}
+		}
+	}
+	
+	#
+	
+	focus = {
+		id = Подчиниться_новому_правительству_Брюсселя #COG_submit_to_new_brussels_government
+		icon = GFX_goal_support_fascism
+		cost = 5
+		prerequisite = {
+			focus = Увеличить_военный_налог
+		}
+		mutually_exclusive = {
+			focus = Лояльность_действующему_правительству
+			focus = Провозгласить_государство_рабочих
+		}
+		available = { #?
+			BEL = { #?? !
+				is_subject_of = GER
+			}
+		}
+		x = -6
+		y = 3
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			BEL = { #?
+				set_autonomy = {
+					target = ROOT
+					autonomous_state = autonomy_puppet
+				}
+			}
+			custom_effect_tooltip = COG_submit_to_new_brussels_government_tt
+			#hidden_effect = {
+				ENG = {
+					if = {
+						limit = { has_war_with = GER } #?
+						country_event = { id = congo.30 days = 10 }
+					}
+				}
+			#}
+		}
+	}
+	focus = {
+		id = Создать_SS_из_конголезцев
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Подчиниться_новому_правительству_Брюсселя
+		}
+		available = {
+			is_in_faction_with = GER #??
+		}
+		x = 0
+		y = 1
+		relative_position_id = Подчиниться_новому_правительству_Брюсселя
+		completion_reward = {
+			division_template = {
+				name = "SS" #??
+				priority = 1
+				#template_counter = 3
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"SS\" division_template = \"SS\" start_experience_factor = 0.1 start_equipment_factor = 0.95" owner = PREV count = 3
+				}
+			}
+		}
+	}
+	focus = {
+		id = Вернуть_Французское_Конго
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Создать_SS_из_конголезцев
+		}
+		x = 1
+		y = 3
+		relative_position_id = Подчиниться_новому_правительству_Брюсселя
+		completion_reward = {
+			add_state_claim = 1005
+			add_state_core = 1005
+		}
+	}
+	focus = {
+		id = Вернуть_Португальское_Конго
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Создать_SS_из_конголезцев
+		}
+		x = 2
+		y = 2
+		relative_position_id = Подчиниться_новому_правительству_Брюсселя
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 1056
+						state = 540
+						state = 1045
+						state = 1044
+					}
+				}
+				add_claim_by = ROOT
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = Немецкие_исследования_резины
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Создать_SS_из_конголезцев
+		}
+		available = {
+			is_in_faction_with = GER #??
+		}
+		x = 0
+		y = 2
+		relative_position_id = Подчиниться_новому_правительству_Брюсселя
+		completion_reward = {
+			add_tech_bonus = {
+				#name = MAN_purchase_german_licenses
+				bonus = 1
+				uses = 2
+				category = synth_resources # synth_resources cat_synth_oil synth_oil_res ?
+			}
+		}
+	}
+	focus = { # !
+		id = Подпустить_Рейх_к_разработке_Урана_СКРЫТЬ
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = Подчиниться_новому_правительству_Брюсселя
+		}
+		x = 2
+		y = 1
+		relative_position_id = Подчиниться_новому_правительству_Брюсселя
+
+	}
+	
+	# ]
+	
+	# Восстание Рабочих [
+	
+	focus = {
+		id = Провозгласить_государство_рабочих #COG_proclaim_workers_state
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Увеличить_военный_налог
+		}
+		mutually_exclusive = {
+			focus = Лояльность_действующему_правительству
+			focus = Подчиниться_новому_правительству_Брюсселя
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = COG_proclaim_workers_state_tt
+				has_completed_focus = Провозгласить_государство_рабочих
+			}
+		}
+		x = -2
+		y = 3
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			custom_effect_tooltip = COG_proclaim_workers_state_tooltip
+			add_popularity = {
+				ideology = communism
+				popularity = 0.1
+			}
+			add_popularity = {
+				ideology = trozkism
+				popularity = 0.1
+			}
+			add_popularity = {
+				ideology = anarchism
+				popularity = 0.1
+			}
+			unlock_decision_tooltip = COG_demand_independence #?
+		}
+	}
+	focus = {
+		id = Повышение_зарплат_рабочим
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Провозгласить_государство_рабочих
+		}
+		x = 0
+		y = 1
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			remove_ideas = COG_forced_labor #??
+			remove_ideas = COG_forced_labor_for_peasants
+			remove_ideas = COG_high_military_tax
+			remove_ideas = COG_general_strike
+			add_stability = 0.1
+			add_ideas = COG_increased_salaries_of_workers_communist
+		}
+	}
+	focus = {
+		id = Прекратить_расовую_сегрегацию
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Повышение_зарплат_рабочим
+		}
+		x = 0
+		y = 2
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			remove_ideas = COG_racial_segregation
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = Установить_связи_с_государствами_рабочих
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Повышение_зарплат_рабочим
+		}
+		x = 2
+		y = 2
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			every_other_country = { #?
+				limit = { is_left_ideology = yes }
+				add_opinion_modifier = { #торговые отношения тоже !
+					target = ROOT
+					modifier = COG_workers_solidarity
+				}
+				reverse_add_opinion_modifier = { #?
+					target = ROOT
+					modifier = COG_workers_solidarity
+				}
+			}
+		}
+	}
+	focus = {
+		id = Национализировать_иностранные_предприятия #COG_nationalize_foreign_business
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Прекратить_расовую_сегрегацию
+		}
+		x = -1
+		y = 3
+		relative_position_id = Провозгласить_государство_рабочих
+		#complete_tooltip = {} ?
+		completion_reward = {
+			# if = { #??
+				# limit = { is_left_ideology = yes } #?
+				# custom_effect_tooltip = COG_union_miniere_du_haut_katanga_tt
+				# country_event = congo.17 #?
+			# }
+			custom_effect_tooltip = COG_nationalize_foreign_business_tt
+			random_owned_controlled_state = { #??
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { #??
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { #??
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { #??
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			#hidden_effect = {
+				country_event = { id = congo.34 days = 30 }
+			#}
+		}
+	}
+	focus = {
+		id = Создание_профсоюзов_для_темнокожих
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Создание_профсоюзов_для_белых
+			focus = Доминируй_чтобы_служить
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = COG_evolues_var_more_than_2000 #??
+				check_variable = { COG_evolues_var > 1999 }
+			}
+			OR = {
+				has_completed_focus = Доминируй_чтобы_служить
+				is_left_ideology = yes
+			}
+		}
+		x = 0
+		y = 2
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_to_variable = { COG_evolues_var = -2000 tooltip = COG_evolues_var_tooltip }
+			1065 = { #?
+				add_manpower = 2000
+			}
+			if = {
+				limit = { has_idea = COG_white_unions }
+				swap_ideas = {
+					remove_idea = COG_white_unions
+					add_idea = COG_white_and_black_unions
+				}
+			}
+			else = {
+				add_ideas = COG_black_unions
+			}
+			if = {
+				limit = { has_idea = COG_incompetent_production_managers }
+				swap_ideas = {
+					remove_idea = COG_incompetent_production_managers
+					add_idea = COG_incompetent_production_managers_1
+				}
+			}
+			if = {
+				limit = { has_completed_focus = Доминируй_чтобы_служить has_character = COG_leonard_mpoyi }
+				custom_effect_tooltip = available_political_advisor
+				show_ideas_tooltip = COG_leonard_mpoyi
+			}
+		}
+	}
+	focus = {
+		id = Уравнять_права_белых_и_чёрных_рабочих
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Национализировать_иностранные_предприятия
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = COG_evolues_var_more_than_2000 #??
+				check_variable = { COG_evolues_var > 1999 }
+			}
+			has_completed_focus = Создание_профсоюзов_для_темнокожих
+		}
+		x = -3
+		y = 4
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			add_to_variable = { COG_evolues_var = -2000 tooltip = COG_evolues_var_tooltip }
+			1065 = { #?
+				add_manpower = 2000
+			}
+			remove_ideas = COG_incompetent_production_managers_1 #?
+			add_timed_idea = { idea = COG_conflicts_at_work days = 365 }
+		}
+	}
+	focus = {
+		id = Создание_молодёжных_кружков #Создание молодёжных организаций
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Национализировать_иностранные_предприятия
+		}
+		x = -1
+		y = 4
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			add_ideas = COG_youth_clubs
+			# рост со временем как в манчжурии ? !
+		}
+	}
+	focus = { #объединить фокусы ?
+		id = Восстановление_административного_аппарата #COG_restoration_of_administration
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Прекратить_расовую_сегрегацию
+		}
+		x = 1
+		y = 3
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			custom_effect_tooltip = COG_restoration_of_administration_tt
+			unlock_decision_category_tooltip = COG_restoration_of_administration_category
+		}
+	}
+	focus = { #объединить фокусы ?
+		id = Организовать_рабочую_партию
+		icon = GFX_goal_support_communism
+		cost = 5
+		prerequisite = {
+			focus = Восстановление_административного_аппарата
+		}
+		x = 1
+		y = 4
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			country_event = congo.35
+		}
+	}
+	focus = {
+		id = Создание_Конголезской_советской_республики
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Принять_помощь_от_южноафриканских_профсоюзов
+			focus = Приезд_советников_из_Москвы
+		}
+		x = -2
+		y = 6
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			if = {
+				limit = { has_government = communism }
+				add_ideas = COG_congolese_soviet_republic_comm
+			}
+			else_if = {
+				limit = { has_government = trozkism }
+				add_ideas = COG_congolese_soviet_republic_troz
+			}
+			# еще чего нить добавить (в идеи)?
+		}
+	}
+	focus = {
+		id = Отбросить_этническую_борьбу #COG_stop_ethnic_struggle name ?
+		icon = GFX_goal_support_communism
+		cost = 5
+		prerequisite = {
+			focus = Создание_Конголезской_советской_республики
+		}
+		mutually_exclusive = {
+			focus = Племенной_социализм
+		}
+		x = 1
+		y = 1
+		relative_position_id = Создание_Конголезской_советской_республики
+		completion_reward = { #?? !!
+			add_stability = -0.1
+			custom_effect_tooltip = COG_stop_ethnic_struggle_tt
+			# еще один custom_effect_tooltip ?
+			#hidden_effect = {
+				every_controlled_state = { #?
+					limit = { is_original_congo_state = yes }
+					set_variable = { COG_loyalty_lvl_var = 6 } #-1?
+				}
+				remove_ideas = COG_faithful_administration_of_tribal_leaders
+				remove_ideas = COG_loyal_administration_of_tribal_leaders
+				remove_ideas = COG_disloyal_administration_of_tribal_leaders
+			#}
+		}
+	}
+	focus = {
+		id = Культивация_личности_вождя_партии
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Отбросить_этническую_борьбу
+		}
+		x = 1
+		y = 2
+		relative_position_id = Создание_Конголезской_советской_республики
+		completion_reward = {
+			add_ideas = COG_cult_of_personality # в виде трейта !
+		}
+	}
+	focus = {
+		id = Племенной_социализм #COG_tribal_socialism
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Создание_Конголезской_советской_республики
+		}
+		mutually_exclusive = {
+			focus = Отбросить_этническую_борьбу
+		}
+		x = -1
+		y = 1
+		relative_position_id = Создание_Конголезской_советской_республики
+		completion_reward = {
+			add_stability = 0.1
+			custom_effect_tooltip = COG_tribal_socialism_tt
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				set_temp_variable = { lvl = COG_loyalty_lvl_var } # ?
+				add_to_temp_variable = { lvl = 1 }
+				clamp_temp_variable = { var = lvl min = 1 max = 5 }
+				custom_effect_tooltip = COG_increase_loyalty_lvl
+				
+				add_to_variable = { COG_loyalty_lvl_var = 1 }
+				clamp_variable = { var = COG_loyalty_lvl_var min = 1 max = 5 }
+			}
+			#hidden_effect = {
+				COG_update_administration_of_tribal_leaders_idea = yes
+			#}
+		}
+	}
+	focus = {
+		id = Призыв_племенных_ополченцев # Революционное_ополчение ? COG_revolutionary_militia
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Племенной_социализм
+		}
+		x = -1
+		y = 2
+		relative_position_id = Создание_Конголезской_советской_республики
+		completion_reward = {
+			custom_effect_tooltip = COG_revolutionary_militia_tt
+			unlock_decision_category_tooltip = COG_generic_irregular_army_category #!!
+			# еще один custom_effect_tooltip ?
+		}
+	}
+	
+	# # Подветка тро [
+	
+	focus = {
+		id = Принять_помощь_от_южноафриканских_профсоюзов
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Организовать_рабочую_партию
+		}
+		mutually_exclusive = {
+			focus = Приезд_советников_из_Москвы
+		}
+		available = {
+			#Вы приняли советников из ЮАС
+			has_government = trozkism
+		}
+		x = -5
+		y = 5
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			add_stability = 0.05
+			# Будут доступны советники троцкисты из ЮАС, при условии, что ЮАС сами не наняли их, опять же они заблокируются для ЮАС если их взяло Конго !!
+		}
+	}
+	focus = {
+		id = Организовать_местную_секцию_интернационала
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Принять_помощь_от_южноафриканских_профсоюзов
+		}
+		x = 1
+		y = 1
+		relative_position_id = Принять_помощь_от_южноафриканских_профсоюзов
+		completion_reward = {
+			set_rule = { can_create_factions = yes }
+			create_faction = COG_section_fourth_international
+		}
+	}
+	focus = {
+		id = Распространить_теорию_перманентной_революции_среди_крестьян
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Принять_помощь_от_южноафриканских_профсоюзов
+		}
+		x = -3
+		y = 1
+		relative_position_id = Принять_помощь_от_южноафриканских_профсоюзов
+		completion_reward = {
+			if = {
+				limit = { has_government = trozkism }
+				add_to_variable = { global.troz_threat_var = 1 tooltip = troz_threat_tt }
+				set_var_for_troz_threat_dyn = yes
+			}
+			add_ideas = COG_theory_of_revolution_for_peasants
+		}
+	}
+	focus = {
+		id = Основать_аграрные_профсоюзы
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Распространить_теорию_перманентной_революции_среди_крестьян
+		}
+		x = -3
+		y = 2
+		relative_position_id = Принять_помощь_от_южноафриканских_профсоюзов
+		completion_reward = {
+			every_core_state = {
+				limit = { is_controlled_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = Принять_чёрный_национализм
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Принять_помощь_от_южноафриканских_профсоюзов
+		}
+		x = -1
+		y = 1
+		relative_position_id = Принять_помощь_от_южноафриканских_профсоюзов
+		completion_reward = {
+			add_ideas = COG_black_nationalism
+			# еще чего нить добавить (в идеи)?
+			unlock_decision_category_tooltip = COG_african_pannationalism #!!
+			# еще один custom_effect_tooltip ?
+		}
+	}
+	focus = {
+		id = Протянуть_руку_помощи_рабочим_Анголы
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Принять_чёрный_национализм
+		}
+		available = { #!(надо везде)
+			is_subject = no
+		}
+		x = -1
+		y = 2
+		relative_position_id = Принять_помощь_от_южноафриканских_профсоюзов
+		completion_reward = {
+			every_state = { #?
+				limit = {
+					OR = {
+						state = 1056
+						state = 540
+						state = 1044
+						state = 1045
+					}
+				}
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							type = take_state_focus
+							target = PREV
+							generator = { 1056 540 1044 1045 } #?
+						}
+						add_ai_strategy = { #?
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Свергнуть_колониальный_режим_в_ЮЗА
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Протянуть_руку_помощи_рабочим_Анголы
+		}
+		available = {
+			is_subject = no
+			NMB = { is_left_ideology = no }
+			# ЮЗА марионетка ?
+		}
+		bypass = {
+			NMB = { 
+				exists = no 
+				is_left_ideology = yes 
+			}
+		}
+		x = -2
+		y = 3
+		relative_position_id = Принять_помощь_от_южноафриканских_профсоюзов
+		completion_reward = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = NMB
+			}
+			add_ai_strategy = { #?
+				type = antagonize
+				id = NMB
+				value = 200
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = NMB
+				value = 100
+			}
+			add_ai_strategy = {
+				type = declare_war
+				id = NMB
+				value = 100
+			}
+		}
+	}
+	focus = {
+		id = Свергнуть_колониальный_режим_в_ЮАС
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Протянуть_руку_помощи_рабочим_Анголы
+		}
+		available = {
+			is_subject = no
+			SAF = { is_left_ideology = no }
+			# ЮАС марионетка ИЛИ свободна, но не троцкистская ?
+		}
+		bypass = {
+			SAF = { 
+				exists = no 
+				is_left_ideology = yes 
+			}
+		}
+		x = 0
+		y = 3
+		relative_position_id = Принять_помощь_от_южноафриканских_профсоюзов
+		completion_reward = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = SAF
+			}
+			add_ai_strategy = { #?
+				type = antagonize
+				id = SAF
+				value = 200
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = SAF
+				value = 100
+			}
+			add_ai_strategy = {
+				type = declare_war
+				id = SAF
+				value = 100
+			}
+		}
+	}
+	focus = {
+		id = Спасти_рабочих_в_Мозамбике
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Свергнуть_колониальный_режим_в_ЮЗА
+		}
+		x = -2
+		y = 4
+		relative_position_id = Принять_помощь_от_южноафриканских_профсоюзов
+		completion_reward = {
+			every_state = { #?
+				limit = {
+					OR = {
+						state = 544
+						state = 983
+					}
+				}
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							type = take_state_focus
+							target = PREV
+							generator = { 544 983 }
+						}
+						add_ai_strategy = { #?
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Спасти_рабочих_Родезии
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Свергнуть_колониальный_режим_в_ЮАС
+		}
+		x = 0
+		y = 4
+		relative_position_id = Принять_помощь_от_южноафриканских_профсоюзов
+		completion_reward = {
+			every_state = { #??
+				limit = {
+					OR = {
+						state = 545
+						state = 1110
+					}
+				}
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							type = take_state_focus
+							target = PREV
+							generator = { 545 1110 }
+						}
+						add_ai_strategy = { #?
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	# # ]
+	
+	# # Подветка комми [
+	
+	focus = {
+		id = Приезд_советников_из_Москвы
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Организовать_рабочую_партию
+		}
+		mutually_exclusive = {
+			focus = Принять_помощь_от_южноафриканских_профсоюзов
+		}
+		available = {
+			#Вы приняли советников из СССР ?
+			has_government = communism
+		}
+		x = 1
+		y = 5
+		relative_position_id = Провозгласить_государство_рабочих
+		completion_reward = {
+			add_stability = 0.05
+			# Будут доступны советники коммунисты из СССР, при условии, что СССР сами не наняли их, опять же они заблокируются для СССР если их взяло Конго !!
+		}
+	}
+	focus = { #!
+		id = Социализм_в_одной_стране_ГЕНЕРИК
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = Приезд_советников_из_Москвы
+		}
+		x = -1
+		y = 1
+		relative_position_id = Приезд_советников_из_Москвы
+
+	}
+	focus = {
+		id = Коллективизация_ГЕНЕРИК
+		#name = collectivization_focus
+		icon = GFX_z_goal_voluntary_creation_of_collective
+		cost = 5
+		prerequisite = {
+			focus = Приезд_советников_из_Москвы
+		}
+		x = 1
+		y = 1
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			add_ideas = collectivization_focus
+		}
+	}
+	focus = {
+		id = Вступить_в_Коминтерн
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Приезд_советников_из_Москвы
+		}
+		mutually_exclusive = {
+			focus = Отказаться_от_политики_Москвы
+		}
+		available = {
+			SOV = { is_faction_leader = yes }
+		}
+		x = 0
+		y = 2
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			SOV = {
+				country_event = generic.2
+			}
+		}
+	}
+	focus = {
+		id = Помощь_в_индустриализации_страны
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Вступить_в_Коминтерн
+		}
+		available = {
+			SOV = { is_faction_leader = yes }
+		}
+		x = 0
+		y = 4
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			random_owned_controlled_state = { #??
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { #??
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_timed_idea = { idea = COG_assistance_in_industrialization days = 730 }
+		}
+	}
+	focus = {
+		id = Закон_о_военном_времени_ГЕНЕРИК
+		#name = generic_ethics_for_war
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 10
+		prerequisite = {
+			focus = Помощь_в_индустриализации_страны
+		}
+		available = {
+			has_war = yes
+		}
+		x = -1
+		y = 5
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			add_ideas = generic_ethics_for_war
+		}
+	}
+	focus = { #!
+		id = Военные_советники_из_СССР
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = Закон_о_военном_времени_ГЕНЕРИК
+		}
+		available = {
+			has_war = yes
+		}
+		x = -1
+		y = 6
+		relative_position_id = Приезд_советников_из_Москвы
+
+	}
+	focus = {
+		id = Отказаться_от_политики_Москвы
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Приезд_советников_из_Москвы
+		}
+		mutually_exclusive = {
+			focus = Вступить_в_Коминтерн
+		}
+		x = 2
+		y = 2
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			add_political_power = 100
+			# вы потеряете возможность набирать советников СССР
+			SOV = {
+				remove_opinion_modifier = {
+					target = ROOT
+					modifier = COG_advisors_from_moscow
+				}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = COG_deviation_from_course_of_moscow
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = COG_deviation_from_course_of_moscow
+				}
+			}
+		}
+	}
+	focus = {
+		id = Африканский_интернационал
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Отказаться_от_политики_Москвы
+		}
+		x = 2
+		y = 4
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			set_rule = { can_create_factions = yes }
+			create_faction = COG_african_international
+		}
+	}
+	focus = {
+		id = Пригласить_идеологических_союзников
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Африканский_интернационал
+		}
+		x = 3
+		y = 5
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			unlock_decision_category_tooltip = COG_formation_of_african_international #??
+		}
+	}
+	focus = {
+		id = Создать_общий_научный_блок
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Пригласить_идеологических_союзников
+		}
+		x = 3
+		y = 6
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			add_to_tech_sharing_group = COG_communist_african_research_block
+			every_country = { #? (в on_action надо тоже !)
+				limit = { is_in_faction_with = COG }
+				add_to_tech_sharing_group = COG_communist_african_research_block
+			}
+			add_research_slot = 1 #?
+		}
+	}
+	focus = {
+		id = Определить_курс_партии
+		icon = GFX_goal_support_communism
+		cost = 10
+		prerequisite = {
+			focus = Вступить_в_Коминтерн
+			focus = Отказаться_от_политики_Москвы
+		}
+		x = 1
+		y = 3
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			country_event = congo.36
+		}
+	}
+	focus = { # !
+		id = Переход_на_плановую_экономику
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = Определить_курс_партии
+		}
+		x = 1
+		y = 5
+		relative_position_id = Приезд_советников_из_Москвы
+
+	}
+	focus = {
+		id = Начать_первую_пятилетку # COG_start_first_five_year_plan
+		#name = ALB_Start_the_first_five_year_plan #?
+		#desc = ALB_Start_the_first_five_year_plan_desc #?
+		icon = GFX_z_goal_Start_the_first_five_year_plan
+		cost = 10
+		prerequisite = {
+			focus = Переход_на_плановую_экономику
+		}
+		x = 1
+		y = 6
+		relative_position_id = Приезд_советников_из_Москвы
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_start_first_five_year_plan"
+			set_country_flag = { flag = COG_five_year_plan_flag days = 1835 value = 1 }
+			activate_mission = COG_five_year_plan_ending
+		}
+	}
+	
+	# # ]
+	
+	# ]
+	
+	# Ветка Реформ Рикманса [
+	
+	focus = {
+		id = Доминируй_чтобы_служить
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Введение_нового_социального_класса
+		}
+		mutually_exclusive = {
+			focus = Создание_профсоюзов_для_белых
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = COG_evolues_var_more_than_3000 #??
+				check_variable = { COG_evolues_var > 2999 }
+			}
+		}
+		x = 2
+		y = 1
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_to_variable = { COG_evolues_var = -3000 tooltip = COG_evolues_var_tooltip }
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				add_manpower = 500
+			}
+			add_stability = 0.05
+			add_ideas = COG_dominate_to_serve
+		}
+	}
+	focus = {
+		id = Поддержка_протестантских_церквей
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Доминируй_чтобы_служить
+		}
+		x = 2
+		y = 2
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_ideas = COG_support_for_protestant_churches
+			# еще чего нить добавить (в идеи)?
+		}
+	}
+	focus = {
+		id = Предоставить_права_«развитым»_конголезцам
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Доминируй_чтобы_служить
+		}
+		x = 19
+		y = 2
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			remove_ideas = COG_racial_segregation
+		}
+	}
+	focus = {
+		id = Уменьшить_зависимость_от_Брюсселя
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Доминируй_чтобы_служить
+		}
+		x = 17
+		y = 2
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_autonomy_score = { value = 250 }
+			# add_autonomy_score={
+				# value = 150
+				# #localization="LOC_KEY"
+			# }
+			swap_ideas = {
+				remove_idea = COG_all_benefits_to_metropolis
+				add_idea = COG_all_benefits_to_metropolis_1
+			}
+			swap_ideas = {
+				remove_idea = COG_dominate_to_serve
+				add_idea = COG_dominate_to_serve_1
+			}
+		}
+	}
+	focus = {
+		id = Разрешить_набор_местных_в_администрацию
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Уменьшить_зависимость_от_Брюсселя
+		}
+		prerequisite = {
+			focus = Предоставить_права_«развитым»_конголезцам
+		}
+		x = 18
+		y = 3
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			unlock_decision_category_tooltip = COG_creating_administration_from_locals
+		}
+	}
+	focus = {
+		id = Бельгийский_доминион # COG_belgian_dominion
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Разрешить_набор_местных_в_администрацию
+		}
+		mutually_exclusive = {
+			focus = Изгнать_белого_человека_в_землю
+		}
+		available = {
+			has_autonomy_state = autonomy_dominion #?
+		}
+		x = 18
+		y = 4
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			remove_ideas = COG_dominate_to_serve_1
+			swap_ideas = {
+				remove_idea = COG_all_benefits_to_metropolis_1
+				add_idea = COG_all_benefits_to_metropolis_2
+			}
+			custom_effect_tooltip = COG_belgian_dominion_tt
+		}
+	}
+	
+	# ]
+	
+	# Ветка Республики [
+	
+	focus = {
+		id = Создание_собственной_Республики
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Бельгийский_доминион
+		}
+		mutually_exclusive = {
+			focus = Пьер_VII
+		}
+		available = {
+			always = no # ?
+		}
+		x = -6
+		y = 1
+		relative_position_id = Бельгийский_доминион
+		completion_reward = {
+			add_stability = 0.1
+		}
+	}
+	focus = {
+		id = Сохранить_экономические_связи_с_Брюсселем
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Создание_собственной_Республики
+		}
+		mutually_exclusive = {
+			focus = Независимая_экономика_НАШЕ_ПЕРЕДЕЛ_ЭФФ
+		}
+		available = {
+			has_country_flag = COG_congo_chose_loyalty_to_belgium
+		}
+		x = 2
+		y = 1
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = {
+			add_ideas = COG_economic_relations_with_brussels
+		}
+	}
+	focus = {
+		id = Совместные_разработки_шахт_Катанги
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Сохранить_экономические_связи_с_Брюсселем
+		}
+		x = 2
+		y = 2
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = {
+			1065 = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			BEL = { #?
+				add_offsite_building = { type = industrial_complex level = 1 } #?(добавит по дефолту?) !!
+			}
+		}
+	}
+	focus = {
+		id = Независимая_экономика_НАШЕ_ПЕРЕДЕЛ_ЭФФ
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Создание_собственной_Республики
+			focus = Пьер_VII
+		}
+		mutually_exclusive = {
+			focus = Сохранить_экономические_связи_с_Брюсселем
+		}
+		available = {
+			is_subject = no
+		}
+		x = -2
+		y = 2
+		relative_position_id = Бельгийский_доминион
+		completion_reward = {
+			add_timed_idea = { idea = COG_creating_an_independent_economy days = 730 }
+		}
+	}
+	focus = {
+		id = Национализировать_предприятия_Катанги_НАШЕ_ПЕРЕДЕЛ_ЭФФ
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Независимая_экономика_НАШЕ_ПЕРЕДЕЛ_ЭФФ
+		}
+		x = -2
+		y = 3
+		relative_position_id = Бельгийский_доминион
+		completion_reward = {
+			1065 = { #?
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = Привлечение_населения_к_обработке_земли_НАШЕ
+		icon = GFX_goal_generic_construct_civilian
+		cost = 10
+		prerequisite = {
+			focus = Пьер_VII
+			focus = Создание_собственной_Республики
+		}
+		available = {
+			295 = { #??
+				owner = {
+					OR = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+				}
+			}
+		}
+		x = 0
+		y = 2
+		relative_position_id = Бельгийский_доминион
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_civilian_to_work_earth"
+			295 = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = Самостоятельное_улучшение_экономики_НАШЕ
+		icon = GFX_focus_generic_self_management
+		cost = 10
+		prerequisite = {
+			focus = Привлечение_населения_к_обработке_земли_НАШЕ
+		}
+		available = {
+			538 = {
+			    owner = {
+					OR = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		x = 0
+		y = 3
+		relative_position_id = Бельгийский_доминион
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_our_develop_economic"
+			538 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = Самостоятельная_разработка_урана_НАШЕ #COG_independent_development_of_uranium name ?
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Национализировать_предприятия_Катанги_НАШЕ_ПЕРЕДЕЛ_ЭФФ
+		}
+		prerequisite = {
+			focus = Самостоятельное_улучшение_экономики_НАШЕ
+		}
+		mutually_exclusive = {
+			focus = Совместная_разработка_урана
+		}
+		available = {
+			NOT = { has_completed_focus = Инвестиции_в_обмен_на_уран } #?
+		}
+		x = 0
+		y = 5
+		relative_position_id = Бельгийский_доминион
+		completion_reward = {
+			add_political_power = -200
+			add_tech_bonus = {
+				#name = MAN_purchase_german_licenses
+				bonus = 1
+				uses = 2
+				category = nuclear
+			}
+			# уран вновь появится в стейте Конго.
+		}
+	}
+	focus = {
+		id = Сотрудничество_с_военным_командованием_НАШЕ
+		icon = GFX_z_goal_upgrade_belg_weapon
+		cost = 10
+		prerequisite = {
+			focus = Создание_собственной_Республики
+		}
+		x = 0
+		y = 1
+		relative_position_id = Создание_собственной_Республики
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_level_up_belg_weapon"
+			army_experience = 15
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = infantry_weapons
+				name = COG_level_up_belg_weapon
+			}
+		}
+	}
+	focus = {
+		id = Усиление_роли_военных_в_общественной_жизни_НАШЕ
+		icon = GFX_focus_generic_military_mission
+		cost = 10
+		prerequisite = {
+			focus = Сотрудничество_с_военным_командованием_НАШЕ
+		}
+		x = 0
+		y = 2
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_military_in_civ_lives"
+			add_ideas = COG_freedomloving_generals
+		}
+	}
+	focus = {
+		id = Признать_диалекты_официальными_языками_в_регионах
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Создание_собственной_Республики
+		}
+		x = -2
+		y = 1
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = {
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				set_temp_variable = { lvl = COG_loyalty_lvl_var } # ?
+				add_to_temp_variable = { lvl = 1 }
+				clamp_temp_variable = { var = lvl min = 1 max = 5 }
+				custom_effect_tooltip = COG_increase_loyalty_lvl
+				
+				add_to_variable = { COG_loyalty_lvl_var = 1 }
+				clamp_variable = { var = COG_loyalty_lvl_var min = 1 max = 5 }
+			}
+			#hidden_effect = {
+				COG_update_administration_of_tribal_leaders_idea = yes
+			#}
+		}
+	}
+	focus = {
+		id = Приобрести_Кабинду_НАШЕ
+		icon = GFX_goal_generic_dangerous_deal
+		cost = 10
+		prerequisite = {
+			focus = Признать_диалекты_официальными_языками_в_регионах
+		}
+		x = -2
+		y = 2
+		relative_position_id = Создание_собственной_Республики
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			industrial_complex > 0
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_acquire_cabinda"
+			1056 = {
+				owner = {
+					country_event = {
+   					    id = congo.42
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Германские_инвестиции
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Усиление_роли_военных_в_общественной_жизни_НАШЕ
+		}
+		available = {
+			NOT = { has_war_with = GER }
+			GER = {
+				has_opinion = {
+					target = ROOT 
+					value > 49 
+				}
+			}
+		}
+		x = 3
+		y = 3
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = { #?
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = infantry_weapons
+				#name = COG_level_up_belg_weapon
+			}
+			GER = { #?
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = COG_investments_in_congo
+				}
+				reverse_add_opinion_modifier = { #?
+					target = ROOT
+					modifier = COG_investments_in_congo
+				}
+			}
+		}
+	}
+	focus = {
+		id = Французские_инвестиции
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Усиление_роли_военных_в_общественной_жизни_НАШЕ
+		}
+		available = {
+			NOT = { has_war_with = FRA }
+			FRA = {
+				has_opinion = {
+					target = ROOT 
+					value > 49 
+				}
+			}
+		}
+		x = 1
+		y = 3
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = { #?
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = industry
+				#name = COG_level_up_belg_weapon
+			}
+			FRA = { #?
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = COG_investments_in_congo
+				}
+				reverse_add_opinion_modifier = { #?
+					target = ROOT
+					modifier = COG_investments_in_congo
+				}
+			}
+		}
+	}
+	focus = {
+		id = Британские_инвестиции
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Усиление_роли_военных_в_общественной_жизни_НАШЕ
+		}
+		available = {
+			NOT = { has_war_with = ENG }
+			ENG = {
+				has_opinion = {
+					target = ROOT 
+					value > 49 
+				}
+			}
+		}
+		x = -1
+		y = 3
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = { #?
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = naval_equipment
+				#name = COG_level_up_belg_weapon
+			}
+			ENG = { #?
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = COG_investments_in_congo
+				}
+				reverse_add_opinion_modifier = { #?
+					target = ROOT
+					modifier = COG_investments_in_congo
+				}
+			}
+		}
+	}
+	focus = {
+		id = Американские_инвестиции
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Усиление_роли_военных_в_общественной_жизни_НАШЕ
+		}
+		available = {
+			NOT = { has_war_with = USA }
+			USA = {
+				has_opinion = {
+					target = ROOT 
+					value > 49 
+				}
+			}
+		}
+		x = -3
+		y = 3
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = { #?
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			USA = { #?
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = COG_investments_in_congo
+				}
+				reverse_add_opinion_modifier = { #?
+					target = ROOT
+					modifier = COG_investments_in_congo
+				}
+			}
+		}
+	}
+	focus = {
+		id = Ввести_доллары_в_широкий_оборот
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Американские_инвестиции
+		}
+		prerequisite = {
+			focus = Искать_нового_союзника
+		}
+		x = -3
+		y = 5
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = { #?
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_timed_idea = { idea = COG_introduction_of_dollars_into_economy days = 365 }
+		}
+	}
+	focus = {
+		id = Уганда_НАШЕ
+		icon = GFX_goal_generic_intelligence_exchange
+		cost = 10
+		prerequisite = {
+			focus = Британские_инвестиции
+		}
+		prerequisite = {
+			focus = Искать_нового_союзника
+		}
+		x = -1
+		y = 5
+		relative_position_id = Создание_собственной_Республики
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			industrial_complex > 3
+			548 = { owner = { tag = ENG } }
+			is_subject = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_uganda"
+			ENG = { country_event = { id = congo.44 } } #?
+		}
+	}
+	focus = {
+		id = Среднее_Конго_НАШЕ
+		icon = GFX_z_goal_diplomacy_1
+		cost = 10
+		prerequisite = {
+			focus = Искать_нового_союзника
+		}
+		prerequisite = {
+			focus = Французские_инвестиции
+		}
+		x = 1
+		y = 5
+		relative_position_id = Создание_собственной_Республики
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			industrial_complex > 2
+			539 = { owner = { tag = event_target:NW_france_scope } }
+			1005 = { owner = { tag = event_target:NW_france_scope } }
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_middle_congo"
+			event_target:NW_france_scope = { country_event = { id = congo.46 } }
+		}
+	}
+	focus = {
+		id = Советники_из_верхмата_НАШЕ
+		icon = GFX_z_goal_war_department
+		cost = 10
+		prerequisite = {
+			focus = Германские_инвестиции
+		}
+		prerequisite = {
+			focus = Искать_нового_союзника
+		}
+		x = 3
+		y = 5
+		relative_position_id = Создание_собственной_Республики
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			GER = { has_government = fascism }
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_advisers_of_wehrmacht"
+			add_ideas = COG_advisers_of_wehrmacht
+		}
+	}
+	focus = {
+		id = Развитие_морской_торговли
+		icon = GFX_goal_generic_positive_trade_relations
+		cost = 10
+		prerequisite = {
+			focus = Американские_инвестиции
+			focus = Британские_инвестиции
+			focus = Французские_инвестиции
+			focus = Германские_инвестиции
+		}
+		x = -2
+		y = 4
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_develop_sea_trade"
+			295 = { # ??
+				add_building_construction = {
+					type = naval_base
+					province = 10968
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = { # !
+		id = Совместная_разработка_урана
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Германские_инвестиции
+			focus = Французские_инвестиции
+			focus = Британские_инвестиции
+			focus = Американские_инвестиции
+		}
+		mutually_exclusive = {
+			focus = Самостоятельная_разработка_урана_НАШЕ
+		}
+		x = 2
+		y = 4
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = {
+			# Уран вернётся, за каждый выполненный фокус на инвестиции, при УСЛОВИИ, что вы не в войне с инвестировавшей страной и она существует, вы получите +2 фабрики, но отдадите 1/5 урана в их столицу.
+		}
+	}
+	focus = {
+		id = Искать_нового_союзника
+		icon = GFX_goal_generic_demand_territory
+		cost = 10
+		prerequisite = {
+			focus = Американские_инвестиции
+			focus = Британские_инвестиции
+			focus = Французские_инвестиции
+			focus = Германские_инвестиции
+		}
+		available = {
+			is_subject = no
+		}
+		x = 0
+		y = 4
+		relative_position_id = Создание_собственной_Республики
+		completion_reward = {
+			# Будет открыта категория решений «Поиск союзника» !
+			unlock_decision_category_tooltip = nw_join_faction_category
+			set_country_flag = nw_join_faction_check_opinion
+			#hidden_effect = { #?
+				activate_targeted_decision = { target = ENG decision = nw_generic_ask_to_join_faction }
+				activate_targeted_decision = { target = FRA decision = nw_generic_ask_to_join_faction }
+				activate_targeted_decision = { target = USA decision = nw_generic_ask_to_join_faction }
+				activate_targeted_decision = { target = GER decision = nw_generic_ask_to_join_faction }
+			#}
+		}
+	}
+	
+	# ]
+	
+	# Ветка Королевства [
+	
+	focus = {
+		id = Пьер_VII #COG_pierre_VIII_du_Kongo ?
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Бельгийский_доминион
+		}
+		mutually_exclusive = {
+			focus = Создание_собственной_Республики
+		}
+		available = {
+			always = no
+		}
+		x = 6
+		y = 1
+		relative_position_id = Бельгийский_доминион
+		completion_reward = {
+			custom_effect_tooltip = COG_pierre_VIII_du_Kongo_tt #?
+			#hidden_effect = {
+				every_state = { #?
+					limit = { is_original_congo_state = yes }
+					if = { #?
+						limit = { check_variable = { COG_loyalty_lvl_var = 5 } }
+						set_variable = { COG_loyalty_lvl_var = 2 }
+					}
+					else_if = {
+						limit = { check_variable = { COG_loyalty_lvl_var = 4 } }
+						set_variable = { COG_loyalty_lvl_var = 2 }
+					}
+					else_if = {
+						limit = { check_variable = { COG_loyalty_lvl_var = 2 } }
+						set_variable = { COG_loyalty_lvl_var = 4 }
+					}
+					else_if = {
+						limit = { check_variable = { COG_loyalty_lvl_var = 1 } }
+						set_variable = { COG_loyalty_lvl_var = 4 }
+					}
+				}
+				COG_update_administration_of_tribal_leaders_idea = yes
+			#}
+		}
+	}
+	focus = {
+		id = Использовать_слонов_в_армии
+		#text = SKM_elephants #!
+		icon = GFX_z_goal_elephants
+		cost = 7.15
+		prerequisite = {
+			focus = Пьер_VII
+		}
+		x = -2
+		y = 1
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_elephants"
+			set_technology = {
+				#elephant_art_support = 1
+				elephant_art_support_unit = 1
+			}
+			set_variable = { ETH_elephants_trait_var = 2 }
+			add_ideas = ETH_elephants_2
+			unlock_decision_category_tooltip = ETH_spawn_elephants_category
+			#hidden_effect = {
+				# if = { #??
+					# limit = {
+						# OR = {
+							# has_idea = LIB_elephants
+							# has_idea = ETH_elephants
+							# has_idea = ETH_elephants_2
+							# has_idea = ETH_elephants_3
+							# has_idea = ETH_elephants_4
+							# has_idea = ETH_elephants_5
+						# }
+					# }
+					# set_temp_variable = { total_elephant_equipment = ETH_elephants_trait_var }
+					# set_temp_variable = { num_elephant_states = 0 }
+					# every_controlled_state = {
+						# limit = { has_state_flag = elephant_spawn_state_flag }
+						# add_to_temp_variable = { num_elephant_states = 1 }
+					# }
+					# multiply_temp_variable = { total_elephant_equipment = num_elephant_states }
+					# #subtract_from_temp_variable = { total_elephant_equipment = minus_elephants_weekly }
+					# add_equipment_to_stockpile = {
+						# type = elephant_equipment
+						# amount = total_elephant_equipment
+					# }
+					# #set_variable = { total_elephant_equipment_weekly = total_elephant_equipment }
+					# log = "[GetDateText]: [This.GetName] ([This.GetTag]): плус [?total_elephant_equipment] слонов"
+				# }
+			#}
+		}
+	}
+	focus = { #!
+		id = Вернуться_к_добыче_слоновьей_кости #COG_back_to_ivory_mining name?
+		icon = GFX_z_goal_monarchism_1
+		cost = 5
+		prerequisite = {
+			focus = Пьер_VII
+		}
+		available = {
+			has_equipment = { elephant_equipment > 0 }
+			#has_completed_focus = Использовать_слонов_в_армии ?
+		}
+		x = -4
+		y = 1
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			custom_effect_tooltip = start_selling_ivory_tooltip
+		}
+	}
+	focus = {
+		id = Вернуть_Мбанза-Конго
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Пьер_VII
+		}
+		available = {
+			is_subject = no
+		}
+		x = 0
+		y = 1
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			every_state = { #?
+				limit = {
+					OR = {
+						state = 1056
+						state = 540
+						state = 1044
+						state = 1045
+					}
+				}
+				add_claim_by = ROOT
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							type = take_state_focus
+							target = PREV
+							generator = { 1056 540 1044 1045 } #?
+						}
+						add_ai_strategy = { #?
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+					if = { #?
+						limit = { original_tag = POR }
+						ROOT = { activate_targeted_decision = { target = POR decision = COG_white_peace } } #add_to_array = { COG_white_peace_countries = PREV }
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Вернуть_Конго-Браззавиль
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Пьер_VII
+		}
+		available = {
+			is_subject = no
+		}
+		x = 2
+		y = 1
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			every_state = { #?
+				limit = {
+					OR = {
+						state = 1005
+					}
+				}
+				add_claim_by = ROOT
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							type = take_state_focus
+							target = PREV
+							generator = { 1005 }
+						}
+						add_ai_strategy = { #?
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+					if = { #?
+						limit = { original_tag = FRA }
+						# Если этими землями владеет Франция и у неё нет стейтов соседствующих с Конго-Браззавилем, то будет доступно решение на белый мир при захвате Конго-Бразильвиля, который останется за Конго. ??
+						ROOT = { activate_targeted_decision = { target = PREV decision = COG_white_peace } } #add_to_array = { COG_white_peace_countries = PREV }
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Поддержка_маканда #COG_support_for_makand
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Пьер_VII
+		}
+		available = {
+			OR = {
+				has_idea = COG_cotton_roads_lvl_1
+				has_idea = COG_cotton_roads_lvl_2
+				has_idea = COG_cotton_roads_lvl_3
+				has_idea = COG_cotton_roads_lvl_4
+				has_idea = COG_cotton_roads_lvl_5
+			}
+			custom_trigger_tooltip = {
+				tooltip = COG_evolues_var_more_than_2500 #??
+				check_variable = { COG_evolues_var > 2499 }
+			}
+		}
+		x = -3
+		y = 2
+		relative_position_id = Пьер_VII
+		completion_reward = { #??
+			add_to_variable = { COG_evolues_var = -2500 tooltip = COG_evolues_var_tooltip }
+			custom_effect_tooltip = COG_support_for_makand_tt
+			add_ideas = COG_influence_of_makand
+			#swap_ideas ?
+			#hidden_effect = {
+				COG_cotton_roads_lvl_update = yes #тултип неправильный !
+			#}
+			# динамический НД «Хлопковые дороги» получит +10% к скорости ремонта инфраструктуры за каждый уровень. !
+		}
+	}
+	focus = {
+		id = Создание_военной_промышленности_королевства
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Поддержка_маканда
+		}
+		prerequisite = {
+			focus = Самостоятельное_улучшение_экономики_НАШЕ
+		}
+		x = -4
+		y = 3
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { #?
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = Возродить_королевский_совет
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Пьер_VII
+		}
+		x = -1
+		y = 2
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			add_ideas = COG_the_royal_council
+		}
+	}
+	focus = {
+		id = Возродить_федеративное_королевство #COG_restore_the_federal_kingdom
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Вернуть_Мбанза-Конго
+		}
+		prerequisite = {
+			focus = Вернуть_Конго-Браззавиль
+		}
+		x = 1
+		y = 2
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			custom_effect_tooltip = COG_restore_the_federal_kingdom_tt
+			unlock_decision_category_tooltip = COG_integration_of_african_kingdoms
+			#hidden_effect = {
+				country_event = { id = congo.48 days = 100 }
+				activate_targeted_decision = { target = 1044 decision = COG_integrate_kingdom_decision }
+				activate_targeted_decision = { target = 1005 decision = COG_integrate_kingdom_decision }
+				activate_targeted_decision = { target = 1001 decision = COG_integrate_kingdom_decision }
+				activate_targeted_decision = { target = 1002 decision = COG_integrate_kingdom_decision }
+				activate_targeted_decision = { target = 931 decision = COG_integrate_kingdom_decision }
+				activate_targeted_decision = { target = 871 decision = COG_integrate_kingdom_decision }
+			#}
+		}
+	}
+	focus = {
+		id = Начать_набор_из_племён
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Возродить_федеративное_королевство
+		}
+		x = 1
+		y = 4
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			add_ideas = COG_recruitment_from_tribes
+		}
+	}
+	focus = {
+		id = Подчинить_Руанду_и_Бурунди
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Возродить_федеративное_королевство
+		}
+		x = 2
+		y = 3
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			every_state = { #?
+				limit = {
+					OR = {
+						state = 1001
+						state = 977
+						state = 1002
+						state = 1102
+					}
+				}
+				add_claim_by = ROOT
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							type = take_state_focus
+							target = PREV
+							generator = { 1001 977 1002 1102 } #?
+						}
+						add_ai_strategy = { #?
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+					if = { #?
+						limit = { is_subject_of = BEL }
+						ROOT = { activate_targeted_decision = { target = PREV decision = COG_white_peace } } #add_to_array = { COG_white_peace_countries = PREV }
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Вернуть_королевства_Донго_и_Матамба
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Подчинить_Руанду_и_Бурунди
+		}
+		x = 2
+		y = 5
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			every_state = { #?
+				limit = {
+					OR = {
+						state = 931
+						state = 922
+						state = 1004
+						state = 871
+					}
+				}
+				add_claim_by = ROOT
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							type = take_state_focus
+							target = PREV
+							generator = { 931 922 1004 871 } #?
+						}
+						add_ai_strategy = { #?
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+					if = { #?
+						limit = { original_tag = ENG }
+						ROOT = { activate_targeted_decision = { target = PREV decision = COG_white_peace } } #add_to_array = { COG_white_peace_countries = PREV }
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Объединить_королевство_языком_киконго
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Возродить_федеративное_королевство
+		}
+		available = {
+			has_idea = COG_language_barrier
+		}
+		x = 0
+		y = 3
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			remove_ideas = COG_language_barrier #?
+		}
+	}
+	focus = {
+		id = Стать_центром_торговли_Африки
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Возродить_федеративное_королевство
+		}
+		prerequisite = {
+			focus = Поддержка_маканда
+		}
+		x = -2
+		y = 3
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			unlock_decision_category_tooltip = COG_influence_in_africa_category
+		}
+	}
+	focus = {
+		id = Встать_во_главе_собственного_союза
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Стать_центром_торговли_Африки
+		}
+		x = -2
+		y = 5
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			set_rule = { can_create_factions = yes } #?
+		}
+	}
+	focus = {
+		id = Искать_союзников_в_Африке
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Стать_центром_торговли_Африки
+		}
+		mutually_exclusive = {
+			focus = Установить_связи_с_Европой
+		}
+		x = -3
+		y = 4
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			custom_effect_tooltip = COG_no_friends_from_left_ideology_tt
+			unlock_decision_tooltip = COG_ask_to_join_faction #loc ?
+		}
+	}
+	focus = {
+		id = Совместные_предприятия
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Искать_союзников_в_Африке
+		}
+		available = {
+			is_in_faction = yes
+		}
+		x = -4
+		y = 5
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			every_other_country = {
+				limit = { is_in_faction_with = ROOT }
+				country_event = congo.57
+			}
+		}
+	}
+	focus = {
+		id = Установить_связи_с_Европой
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Стать_центром_торговли_Африки
+		}
+		mutually_exclusive = {
+			focus = Искать_союзников_в_Африке
+		}
+		x = -1
+		y = 4
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			custom_effect_tooltip = COG_no_friends_from_left_ideology_tt
+			unlock_decision_tooltip = COG_ask_to_join_faction #loc ?
+		}
+	}
+	focus = {
+		id = Инвестиции_в_обмен_на_уран
+		icon = GFX_z_goal_monarchism_1
+		cost = 10
+		prerequisite = {
+			focus = Установить_связи_с_Европой
+		}
+		available = {
+			is_in_faction = yes
+			is_faction_leader = no
+			NOT = { has_completed_focus = Самостоятельная_разработка_урана_НАШЕ }
+		}
+		x = 0
+		y = 5
+		relative_position_id = Пьер_VII
+		completion_reward = {
+			var:faction_leader = { country_event = congo.58 }
+		}
+	}
+	
+	# ]
+	
+	# Ветка Кимбангу [
+	
+	focus = {
+		id = Признание_конголезской_церкви #COG_recognition_of_congolese_church
+		icon = GFX_goal_support_fascism
+		cost = 5
+		prerequisite = {
+			focus = Поддержка_протестантских_церквей
+		}
+		available = {
+			NOT = { has_country_flag = block_COG_recognition_of_congolese_church_focus }
+		}
+		x = 2
+		y = 3
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_stability = 0.1
+			custom_effect_tooltip = COG_recognition_of_congolese_church_tt
+			#hidden_effect = {
+				if = {
+					limit = { has_completed_focus = Амнистия_для_заключённых }
+					country_event = { id = congo.60 } #random_days = 30
+				}
+			#}
+		}
+	}
+	focus = {
+		id = Амнистия_для_заключённых #COG_amnesty_for_prisoners
+		icon = GFX_goal_support_fascism
+		cost = 5
+		prerequisite = {
+			focus = Создание_профсоюзов_для_темнокожих
+		}
+		x = 0
+		y = 3
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			add_political_power = 50
+			add_stability = -0.05
+			add_popularity = {
+				ideology = var:current_party_ideology_group
+				popularity = 0.1
+			}
+			every_controlled_state = { #?
+				limit = { is_owned_by = ROOT }
+				add_manpower = 2500
+			}
+			custom_effect_tooltip = COG_amnesty_for_prisoners_tt
+			#hidden_effect = {
+				if = {
+					limit = { has_completed_focus = Признание_конголезской_церкви }
+					country_event = { id = congo.60 } #random_days = 30
+				}
+			#}
+		}
+	}
+	focus = {
+		id = Изгнать_белого_человека_в_землю #COG_banish_the_white_man
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Амнистия_для_заключённых
+		}
+		prerequisite = {
+			focus = Признание_конголезской_церкви
+		}
+		mutually_exclusive = {
+			focus = Бельгийский_доминион
+		}
+		available = {
+			always = no #?
+		}
+		x = 4
+		y = 4
+		relative_position_id = Введение_нового_социального_класса
+		completion_reward = {
+			custom_effect_tooltip = COG_banish_the_white_man_tt
+			unlock_decision_category_tooltip = COG_faith_in_the_prophet_simon_kimbangu
+			unlock_decision_tooltip = COG_demand_independence
+		}
+	}
+	focus = {
+		id = Основать_кхакисту
+		icon = GFX_goal_support_fascism
+		cost = 5
+		prerequisite = {
+			focus = Изгнать_белого_человека_в_землю
+		}
+		available = {
+			has_country_flag = COG_establish_khakistu_flag
+		}
+		x = 2
+		y = 1
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			if = {
+				limit = { has_character = COG_simon_pierre_mpadi }
+				custom_effect_tooltip = available_political_advisor
+				show_ideas_tooltip = COG_simon_pierre_mpadi
+				effect_tooltip = {
+					add_corps_commander_role = {
+						character = COG_simon_pierre_mpadi
+					}
+				}
+			}
+			# будет получена дивизия спец назначения «Khakista division» с четырьмя касками !
+			division_template = {
+				name = "Khakista division"
+				#division_names_group = COG_INF_01 # ?
+
+				regiments = {
+					paratrooper = { x = 0 y = 0 }
+					paratrooper = { x = 0 y = 1 }
+					paratrooper = { x = 0 y = 2 }
+					paratrooper = { x = 1 y = 0 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Khakista division\" division_template = \"Khakista division\" start_experience_factor = 0.2 start_equipment_factor = 0.95"
+					owner = ROOT
+					count = 1
+				}
+			}
+			add_ideas = COG_khakista
+		}
+	}
+	focus = {
+		id = Запрет_алкоголя_и_дурманов
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Основать_кхакисту
+		}
+		x = 2
+		y = 3
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			add_ideas = COG_prohibition_of_alcohol_and_datura #есть же такой??
+		}
+	}
+	focus = {
+		id = Помощь_Армии_Спасения
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Основать_кхакисту
+		}
+		x = 3
+		y = 2
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			country_event = congo.68
+		}
+	}
+	focus = {
+		id = Создание_«Чёрной_международной_миссии»
+		icon = GFX_goal_support_fascism
+		cost = 5
+		prerequisite = {
+			focus = Помощь_Армии_Спасения
+		}
+		x = 4
+		y = 3
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			every_country = {
+				limit = { capital_scope = { is_on_continent = africa } NOT = { has_war_with = ROOT } } # is_in_array = { global.country_in_africa = THIS } ?
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = COG_international_african_mission
+				}
+				reverse_add_opinion_modifier = { #?
+					target = ROOT
+					modifier = COG_international_african_mission
+				}
+			}
+		}
+	}
+	focus = {
+		id = Изучение_смертельной_руды_НАШЕ
+		icon = GFX_z_goal_study_deadly_ore
+		cost = 10
+		prerequisite = {
+			focus = Помощь_Армии_Спасения
+		}
+		x = 3
+		y = 4
+		relative_position_id = Изгнать_белого_человека_в_землю
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			295 = {
+				owner = {
+					OR = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+				}
+			}
+	    }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_study_deadly_ore"
+			295 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = Пригласить_колдунов_с_Европы_НАШЕ
+		icon = GFX_z_goal_brain
+		cost = 10
+		prerequisite = {
+			focus = Изучение_смертельной_руды_НАШЕ
+		}
+		x = 3
+		y = 5
+		relative_position_id = Изгнать_белого_человека_в_землю
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_invite_magicians_from_europe"
+			country_event = {
+				id = congo.69
+			}
+		}
+	}
+	focus = {
+		id = Второе_пришествие_Христа #COG_the_second_coming_of_christ
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Изгнать_белого_человека_в_землю
+		}
+		x = 0
+		y = 1
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			if = {
+				limit = { has_character = COG_simon_kimbangu }
+				COG_simon_kimbangu = { add_country_leader_trait = black_jesus_1 }
+			}
+			custom_effect_tooltip = COG_the_second_coming_of_christ_tt
+			unlock_decision_category_tooltip = COG_building_christian_state
+		}
+	}
+	focus = {
+		id = Строительство_святого_храма
+		icon = GFX_goal_support_fascism
+		cost = 5
+		prerequisite = {
+			focus = Второе_пришествие_Христа
+		}
+		x = 1
+		y = 2
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			set_province_name = {
+				id = 12925
+				name = new_jerusalem
+			}
+			add_victory_points = { #?
+				province = 12925
+				value = 5
+			}
+			295 = { add_dynamic_modifier = { modifier = COG_holy_city } }
+		}
+	}
+	focus = {
+		id = Двенадцать_апостолов_пророка_Кимбангу
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Второе_пришествие_Христа
+		}
+		x = -1
+		y = 2
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			# Будут доступны наши советники, которые сейчас есть у Кимбангу. !!
+			if = {
+				limit = { has_character = COG_charles_kisolokele }
+				custom_effect_tooltip = available_political_advisor
+				show_ideas_tooltip = COG_charles_kisolokele 
+			}
+			if = {
+				limit = { has_character = COG_joseph_diangienda }
+				custom_effect_tooltip = available_political_advisor
+				show_ideas_tooltip = COG_joseph_diangienda 
+			}
+			if = {
+				limit = { has_character = COG_salomon_dialungana }
+				custom_effect_tooltip = available_political_advisor
+				show_ideas_tooltip = COG_salomon_dialungana 
+			}
+			if = {
+				limit = { has_character = COG_muilu_kiawanga }
+				custom_effect_tooltip = available_political_advisor
+				show_ideas_tooltip = COG_muilu_kiawanga 
+			}
+		}
+	}
+	focus = {
+		id = Возврат_земель_племенам
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Второе_пришествие_Христа
+		}
+		x = 0
+		y = 3
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			add_stability = 0.1
+			every_controlled_state = {
+				limit = { is_original_congo_state = yes }
+				effect_tooltip = { add_extra_state_shared_building_slots = -1 }
+				# add_to_variable = { COG_building_slot_regulator_var = -1 }
+				hidden_effect = { add_state_modifier = { modifier = { local_building_slots = -1 } } }
+				
+				set_temp_variable = { lvl = COG_loyalty_lvl_var } # ?
+				add_to_temp_variable = { lvl = 1 }
+				clamp_temp_variable = { var = lvl min = 1 max = 5 } #?
+				custom_effect_tooltip = COG_increase_loyalty_lvl
+				
+				add_to_variable = { COG_loyalty_lvl_var = 1 }
+				clamp_variable = { var = COG_loyalty_lvl_var min = 1 max = 5 } #?
+			}
+			#hidden_effect = {
+				COG_update_administration_of_tribal_leaders_idea = yes
+			#}
+		}
+	}
+	focus = {
+		id = Огненный_дождь
+		icon = GFX_z_goal_fire_rain
+		cost = 10
+		prerequisite = {
+			focus = Возврат_земель_племенам
+		}
+		x = 0
+		y = 4
+		relative_position_id = Изгнать_белого_человека_в_землю
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			is_subject = no
+		}
+		bypass = {
+			OR = {
+				is_in_faction = yes
+				is_subject = yes
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_fire_rain"
+			set_rule = { can_create_factions = yes }
+			create_faction = COG_fire_rain_faction
+			hidden_effect = { news_event = { id = trworldnews.82 hours = 6 } } #??
+		}
+	}
+	focus = {
+		id = Освобождение_Анголы_НАШЕ
+		icon = GFX_goal_generic_more_territorial_claims
+		cost = 10
+		prerequisite = {
+			focus = Огненный_дождь
+		}
+		x = -1
+		y = 5
+		relative_position_id = Изгнать_белого_человека_в_землю
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			is_subject = no
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_angola_liberty"
+			every_state = {
+				limit = {
+					OR = {
+						state = 1056
+						state = 540
+						state = 1044
+						state = 1045
+					}
+				}
+				add_core_of = ROOT
+				controller = {
+					ROOT = { #??
+						create_wargoal = {
+							type = take_state_focus
+							target = PREV
+							generator = { 1056 540 }
+						}
+						add_ai_strategy = {
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Освобождение_братьев_из_французских_колоний_НАШЕ
+		icon = GFX_goal_generic_territory_or_war
+		cost = 10
+		prerequisite = {
+			focus = Огненный_дождь
+		}
+		x = 1
+		y = 5
+		relative_position_id = Изгнать_белого_человека_в_землю
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_liberty_french_colony"
+			every_state = { #?
+				limit = {
+					OR = {
+						state = 1005
+						state = 539
+					}
+				}
+				add_core_of = ROOT
+				controller = {
+					ROOT = {
+						create_wargoal = {
+							type = take_state_focus
+							target = PREV
+							generator = { 1005 539 }
+						}
+						add_ai_strategy = {
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Спасение_Южной_Африки_от_Апартейда_НАШЕ
+		icon = GFX_z_goal_Circle_Points
+		cost = 10
+		prerequisite = {
+			focus = Освобождение_Анголы_НАШЕ
+		}
+		x = -1
+		y = 6
+		relative_position_id = Изгнать_белого_человека_в_землю
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			is_subject = no
+		}
+		bypass = {
+		}
+		select_effect = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_saving_south_africa_from_apartheid"
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = NMB
+						is_core_of = SAF
+						is_core_of = ZIM
+						state = 275
+						state = 541
+						state = 681
+						state = 719
+						state = 1105
+						state = 1106
+						state = 542
+					}
+				}
+				add_claim_by = ROOT
+				controller = {
+					ROOT = {
+						activate_targeted_decision = { target = PREV.PREV decision = COG_integrate_state }
+						#??
+						add_ai_strategy = {
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Чёрные_братья_из_Сахары_НАШЕ
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 10
+		prerequisite = {
+			focus = Освобождение_братьев_из_французских_колоний_НАШЕ
+		}
+		x = 1
+		y = 6
+		relative_position_id = Изгнать_белого_человека_в_землю
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			is_subject = no
+		}
+		bypass = {
+		}
+		select_effect = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_negroes_of_equatorial_sahara"
+			every_state = {
+				limit = {
+					OR = {
+						state = 1006
+						state = 660
+						state = 1019
+						state = 297
+					}
+				}
+				add_claim_by = ROOT
+				controller = {
+					ROOT = {
+						activate_targeted_decision = { target = PREV.PREV decision = COG_integrate_state }
+						#??
+						add_ai_strategy = {
+							type = antagonize
+							id = PREV
+							value = 200
+						}
+						add_ai_strategy = {
+							type = conquer
+							id = PREV
+							value = 100
+						}
+						add_ai_strategy = {
+							type = declare_war
+							id = PREV
+							value = 100
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Православная_Эфиопия_НАШЕ
+		icon = GFX_z_goal_monarchism_11
+		cost = 10
+		prerequisite = {
+			focus = Освобождение_братьев_из_французских_колоний_НАШЕ
+		}
+		x = 3
+		y = 6
+		relative_position_id = Изгнать_белого_человека_в_землю
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			is_subject = no
+		}
+		bypass = {
+		}
+		select_effect = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_orthodox_ethiopia"
+			if = {
+				limit = { NOT = { country_exists = ETH } }
+				every_state = {
+					limit = { is_core_of = ETH }
+					add_claim_by = ROOT
+					controller = {
+						ROOT = {
+							#??
+							add_ai_strategy = {
+								type = antagonize
+								id = PREV
+								value = 200
+							}
+							add_ai_strategy = {
+								type = conquer
+								id = PREV
+								value = 100
+							}
+							add_ai_strategy = {
+								type = declare_war
+								id = PREV
+								value = 100
+							}
+						}
+					}
+				}
+			}
+			else = { ETH = { country_event = { id = congo.70 } } }
+		}
+	}
+	focus = {
+		id = Империя_чёрного_Христа_НАШЕ
+		icon = GFX_z_goal_monarchism_21
+		cost = 10
+		prerequisite = {
+			focus = Спасение_Южной_Африки_от_Апартейда_НАШЕ
+		}
+		prerequisite = {
+			focus = Чёрные_братья_из_Сахары_НАШЕ
+		}
+		x = 0
+		y = 7
+		relative_position_id = Изгнать_белого_человека_в_землю
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			is_subject = no
+			has_government = fascism
+		}
+		bypass = {
+		}
+		select_effect = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_empire_of_black_christ"
+			add_political_power = 100
+			add_stability = 0.1
+			add_war_support = 0.1
+			set_cosmetic_tag = COG_black_empire
+		}
+	}
+	focus = {
+		id = Покарать_язычников_на_севере
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Чёрные_братья_из_Сахары_НАШЕ
+		}
+		available = {
+			LIB = { has_government = fascism } #?
+		}
+		x = 3
+		y = 7
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = LIB
+			}
+			add_ai_strategy = {
+				type = antagonize
+				id = LIB
+				value = 200
+			}
+			add_ai_strategy = {
+				type = conquer
+				id = LIB
+				value = 100
+			}
+			add_ai_strategy = {
+				type = declare_war
+				id = LIB
+				value = 100
+			}
+		}
+	}
+	focus = {
+		id = Обратиться_к_братьям_в_Америке
+		icon = GFX_goal_support_fascism
+		cost = 5
+		prerequisite = {
+			focus = Изгнать_белого_человека_в_землю
+		}
+		x = -2
+		y = 1
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			country_event = congo.72
+		}
+	}
+	focus = {
+		id = Помочь_желающим_вернуться_на_родину
+		icon = GFX_goal_support_fascism
+		cost = 10
+		prerequisite = {
+			focus = Обратиться_к_братьям_в_Америке
+		}
+		x = -2
+		y = 3
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			add_political_power = -100
+			add_ideas = COG_immigrants_from_america #?
+			USA = { country_event = { id = congo.73 } } #random_days = 30 ?
+		}
+	}
+	focus = {
+		id = Отмена_налогов #COG_abolition_of_taxes
+		icon = GFX_goal_support_fascism
+		cost = 5
+		prerequisite = {
+			focus = Возврат_земель_племенам
+		}
+		prerequisite = {
+			focus = Помочь_желающим_вернуться_на_родину
+		}
+		x = -2
+		y = 4
+		relative_position_id = Изгнать_белого_человека_в_землю
+		completion_reward = {
+			add_stability = 0.15
+			custom_effect_tooltip = COG_abolition_of_taxes_tt
+			clr_country_flag = COG_cotton_roads_flag
+			#hidden_effect = {
+				remove_ideas = COG_cotton_roads_lvl_1
+				remove_ideas = COG_cotton_roads_lvl_2
+				remove_ideas = COG_cotton_roads_lvl_3
+				remove_ideas = COG_cotton_roads_lvl_4
+				remove_ideas = COG_cotton_roads_lvl_5
+				remove_ideas = COG_cotton_roads_lvl_1_trait
+				remove_ideas = COG_cotton_roads_lvl_2_trait
+				remove_ideas = COG_cotton_roads_lvl_3_trait
+				remove_ideas = COG_cotton_roads_lvl_4_trait
+				remove_ideas = COG_cotton_roads_lvl_5_trait
+			#}
+		}
+	}
+	focus = {
+		id = Проповеди_среди_заблудших_душ_НАШЕ
+		icon = GFX_z_goal_sermonts_among_lost_souls
+		cost = 10
+		prerequisite = {
+			focus = Отмена_налогов
+		}
+		x = -2
+		y = 7
+		relative_position_id = Изгнать_белого_человека_в_землю
+		ai_will_do = {
+			factor = 1
+		}
+		
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): Focus COG_sermonts_among_lost_souls"
+			add_ideas = COG_sermonts_among_lost_souls
+		}
+	}
+	
+	# ]
+	
+	# focus = {
+		# id = COG_призвать_африканских_рабочих_к_свободе_focus
+		# icon = GFX_goal_unknown
+		# cost = 0
+		# prerequisite = {
+			# focus = Прекратить_расовую_сегрегацию
+		# }
+		# x = 24
+		# y = 6
+
+	# }
+}

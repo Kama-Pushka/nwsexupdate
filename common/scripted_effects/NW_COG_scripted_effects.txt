@@ -1,0 +1,640 @@
+TETTETETET = {
+	# every_character = {
+		# limit = { is_political_advisor = yes }
+		# meta_effect = {
+			# text = {
+				# PREV = { 
+					# deactivate_advisor = [ADVISOR]
+					# log = "[?ADVISOR]"
+				# }
+			# }
+			# ADVISOR = "[?THIS.GetTokenLocalizedKey]"
+		# }
+	# }
+	# add_to_array = { POR_ANG_colonies_ideas_ui_array = 1 }
+	# set_country_flag = COG_hide_event_tooltip
+				# news_event = congo.41
+				# clr_country_flag = COG_hide_event_tooltip
+	#activate_targeted_decision = { target = POR decision = COG_white_peace }
+	# add_opinion_modifier = {
+		# target = SOV
+		# modifier = COG_investments_in_congo
+	# }
+	# reverse_add_opinion_modifier = {
+		# target = SOV
+		# modifier = COG_investments_in_congo
+	# }
+	# PAK = {
+		# every_core_state = {
+			# limit = { NOT = { is_owned_by = PREV } }
+			# controller = {
+				# if = {
+					# limit = {
+						# NOT = { tag = ROOT is_subject_of = ROOT is_in_faction_with = ROOT has_war_with = ROOT }
+						# NOT = { is_in_array = { old_controller = THIS } }
+					# }
+					# add_to_temp_array = { old_controller = THIS }
+				# }
+			# }
+			# transfer_state_to = PREV
+		# }
+		# for_each_scope_loop = {
+			# array = old_controller
+			# PREV = {
+				# declare_war_on = {
+					# target = PREV
+					# type = civil_war
+				# }
+				# add_civil_war_target = PREV
+			# }
+			# add_civil_war_target = PREV
+		# }
+	# }
+	# SIK = {
+		# every_core_state = {
+			# controller = {
+				# if = {
+					# limit = {
+						# NOT = { tag = ROOT is_subject_of = ROOT is_in_faction_with = ROOT has_war_with = ROOT }
+					# }
+					# ROOT = {
+						# create_wargoal = {
+							# type = annex_everything
+							# target = PREV
+						# }
+						# add_ai_strategy = {
+							# type = antagonize
+							# id = PREV
+							# value = 200
+						# }
+						# add_ai_strategy = {
+							# type = declare_war
+							# id = PREV
+							# value = 200
+						# }
+					# }
+				# }
+			# }
+		# }
+	# }
+	# transfer_units_fraction = {
+		# target = PAK
+		# size = 1
+	# }
+	#release_on_controlled = PAK
+	# every_country = {
+		# limit = { any_controlled_state = { is_core_of = PAK } }
+		# release_on_controlled = PAK
+		# PAK = {
+			# declare_war_on = {
+				# target = PREV
+				# type = civil_war
+			# }
+			# add_civil_war_target = PREV
+			# PREV = { add_civil_war_target = PREV }
+		# }
+	# }
+	#retire_country_leader = yes
+	#COG_pierre_ryckmans = { promote_character = yes }
+	# every_enemy_country = {
+		# limit = {
+			# any_enemy_country = {
+				# is_in_faction_with = ROOT
+				# NOT = { tag = ROOT }
+			# }
+		# }
+		# white_peace = ROOT
+	# }
+	#remove_targeted_decision = { target = 871 decision = COG_integrate_kingdom_mission }
+	#activate_targeted_decision = { target = FRA decision = COG_white_peace }
+	#remove_targeted_decision = { target = 1044 decision = COG_integrate_kingdom_mission }
+	#remove_mission = COG_integrate_kingdom_mission
+	#activate_targeted_decision = { target = 871 decision = COG_plant_new_soybean_varieties_mission }
+	#set_technology = {
+		#elephant_art_support = 1
+		#gw_artillery = 0
+	#}
+	# diplomatic_relation = {
+		# country = SOV
+		# relation = non_aggression_pact
+		# active = yes
+	# }
+	# add_extra_state_shared_building_slots = 1
+	# activate_targeted_decision = { target = BEL decision = COG_demand_independence }
+	#add_political_power = var:casualties_k@POL
+	# if = {
+		# limit = { has_war = yes }
+		# every_enemy_country = {
+			# limit = {
+				# capital_scope = { is_on_continent = europe }
+				
+				# set_temp_variable = { temp_casualties_k = COG_casualties_k }
+				# add_to_temp_variable = { temp_casualties_k = 0.999 }
+				# casualties_inflicted_by = {
+					# opponent = ROOT
+					# thousands > var:temp_casualties_k
+				# }
+				# log = "[?temp_casualties_k]   [?COG_casualties_k]"
+			# }
+			# add_to_variable = { COG_casualties_k = 1 }
+			# ROOT = {
+				# add_to_variable = { COG_faith_in_the_prophet = 1000 }
+			# }
+		# }
+	# }
+	# log = "[?global.year]"
+	# if = {
+					# limit = { has_completed_focus = Изгнать_белого_человека_в_землю has_war = yes }
+					# every_enemy_country = {
+						# limit = {
+							# capital_scope = { is_on_continent = europe }
+							
+							# set_temp_variable = { temp_casualties_k = COG_casualties_k }
+							# add_to_temp_variable = { temp_casualties_k = 0.999 }
+							# casualties_inflicted_by = {
+								# opponent = ROOT
+								# thousands > var:temp_casualties_k
+							# }
+							# log = "[?temp_casualties_k]   [?COG_casualties_k] (THIS: [THIS.GetTag] ROOT: [ROOT.GetTag])"
+						# }
+						# add_to_variable = { COG_casualties_k = 1 }
+						# ROOT = {
+							# add_to_variable = { COG_faith_in_the_prophet = 1000 }
+						# }
+					# }
+				# }
+	# add_to_array = { POR_ANG_colonies_ideas_ui_array = 1 }
+	# every_state = {
+				# limit = {
+					# OR = {
+						# is_core_of = NMB
+						# is_core_of = SAF
+						# is_core_of = ZIM
+						# state = 275
+						# state = 541
+						# state = 681
+						# state = 719
+						# state = 1105
+						# state = 1106
+						# state = 542
+					# }
+				# }
+				# #add_claim_by = ROOT
+				# controller = {
+					# ROOT = {
+						# activate_targeted_decision = { target = PREV.PREV decision = COG_integrate_state }
+					# }
+				# }
+			# }
+	#295 = {
+		#activate_targeted_decision = { target = 1045 decision = COG_integrate_state_tt }
+	#}
+	# every_controlled_state = {
+		# limit = {bunker > 1 set_temp_variable = { bunkers = bunker } }
+		# add_to_temp_variable = { bunkers = bunker }
+		# ROOT = { add_political_power = bunkers }
+	# }
+	# every_controlled_state = {
+		# limit = {check_variable = { modifier@republican_trait_modifier > 0 }}
+		# add_to_temp_variable = { bunkers = bunker }
+		# ROOT = { add_political_power = 100 }
+	# }
+	#if = {
+	#	limit = {
+	#		check_variable = { modifier@universal_factory_modifier > 1 }
+	#	}
+	#}
+	# add_political_power = bunkers
+	# set_temp_variable = { bunkers = 0 }
+	# while_loop_effect = {
+		# limit = {
+			# any_province_building_level = {
+				# limit = 1
+				# building = bunker
+				# #level > bunkers
+			# }
+		# }
+		# #set_temp_variable = {bunkers = modifier@universal_factory_modifier}
+		# add_political_power = bunkers
+		# add_to_temp_variable = { bunkers = 1 }
+	# }
+	# every_controlled_state = {
+		# # limit = { bunker > 0 }
+		# # set_temp_variable = { limit_bunkers = 0 }
+		# # while_loop_effect = {
+			# # limit = {
+				# # bunker > var:limit_bunkers
+			# # }
+			# # add_to_temp_variable = { ROOT.bunkers = 1 }
+			# # add_to_temp_variable = { limit_bunkers = 1 }
+		# # }
+	# # }
+	
+	# clear_variable = bunkers
+	# set_temp_variable = { limit_bunkers = 0 }
+	# while_loop_effect = {
+		# limit = {
+			# bunker > var:limit_bunkers
+		# }
+		# add_to_variable = { bunkers = 1 }
+		# add_to_temp_variable = { limit_bunkers = 1 }
+	# }
+	
+	#activate_decision = COG_build_inga_dam_first
+	#		activate_decision = COG_build_inga_dam_second
+			
+			
+	# activate_targeted_decision = { target = THIS decision = COG_build_inga_dam }
+	
+	#295 = {
+		# add_days_remove = {
+			# decision = COG_build_inga_dam
+			# days = -400
+		# }
+	#}
+	#add_political_power = bunkers
+	
+	# declare_war_on = {
+				# target = COG
+				# type = annex_everything
+			# }
+			
+	# hidden_effect = {
+		# every_enemy_country = {
+		# limit = { tag = BEL }
+		# white_peace = ROOT
+	# }
+	# }
+	
+	activate_targeted_decision = { target = 295 decision = COG_state_urbanization_decision }
+}
+
+COG_update_administration_of_tribal_leaders_idea = { #name ?
+	add_to_temp_variable = { sum = 295.COG_loyalty_lvl_var }
+	add_to_temp_variable = { sum = 886.COG_loyalty_lvl_var }
+	add_to_temp_variable = { sum = 1065.COG_loyalty_lvl_var }
+	add_to_temp_variable = { sum = 538.COG_loyalty_lvl_var }
+	add_to_temp_variable = { sum = 718.COG_loyalty_lvl_var }
+	add_to_temp_variable = { sum = 915.COG_loyalty_lvl_var }
+	if = {
+		limit = { check_variable = { sum > 23 } } #check_variable = { var = sum value = 24 } ?
+		remove_ideas = {
+			COG_loyal_administration_of_tribal_leaders
+			COG_disloyal_administration_of_tribal_leaders
+		}
+		add_ideas = COG_faithful_administration_of_tribal_leaders
+	}
+	else_if = {
+		limit = { #?
+			check_variable = { sum < 24 }
+			check_variable = { sum > 13 }
+		}
+		remove_ideas = {
+			COG_faithful_administration_of_tribal_leaders
+			COG_disloyal_administration_of_tribal_leaders
+		}
+		add_ideas = COG_loyal_administration_of_tribal_leaders
+	}
+	else_if = { #?
+		limit = { #?
+			check_variable = { sum < 14 }
+		}
+		remove_ideas = {
+			COG_faithful_administration_of_tribal_leaders
+			COG_loyal_administration_of_tribal_leaders
+		}
+		add_ideas = COG_disloyal_administration_of_tribal_leaders
+	}
+}
+COG_cotton_roads_lvl_update = {
+	for_each_scope_loop = { #?
+		array = owned_controlled_states
+		add_to_temp_variable = { inf_count = non_damaged_building_level@infrastructure }
+	}
+	divide_temp_variable = { inf_count = num_owned_controlled_states }
+	round_temp_variable = inf_count
+	clamp_temp_variable = { var = inf_count min = 1 max = 5 }
+	
+	hidden_effect = {
+		remove_ideas = COG_cotton_roads_lvl_1
+		remove_ideas = COG_cotton_roads_lvl_2
+		remove_ideas = COG_cotton_roads_lvl_3
+		remove_ideas = COG_cotton_roads_lvl_4
+		remove_ideas = COG_cotton_roads_lvl_5
+		remove_ideas = COG_cotton_roads_lvl_1_trait
+		remove_ideas = COG_cotton_roads_lvl_2_trait
+		remove_ideas = COG_cotton_roads_lvl_3_trait
+		remove_ideas = COG_cotton_roads_lvl_4_trait
+		remove_ideas = COG_cotton_roads_lvl_5_trait
+	}
+	
+	if = { #?
+		limit = { has_completed_focus = Поддержка_маканда }
+		meta_effect = {
+			text = {
+				add_ideas = COG_cotton_roads_lvl_[LVL]_trait
+			}
+			LVL = "[?inf_count]"
+		}
+	}
+	else = {
+		meta_effect = {
+			text = {
+				add_ideas = COG_cotton_roads_lvl_[LVL]
+			}
+			LVL = "[?inf_count]"
+		}
+	}
+	
+	#add_political_power = inf_count
+}
+COG_build_inga_dam_update = {
+	# tooltip ?
+	subtract_from_variable = { COG_build_inga_dam_var = 400 }
+	if = {
+		limit = { has_decision = COG_build_inga_dam }
+		add_days_remove = {
+			decision = COG_build_inga_dam
+			days = -400
+		}
+	}
+}
+COG_build_power_plant_on_inga_dam_update = {
+	if = {
+		limit = { has_completed_focus = Строительство_гидроэлектростанций }
+		custom_effect_tooltip = COG_build_power_plant_on_inga_dam_update_tt #name ?
+	}
+	add_to_variable = { COG_build_power_plant_on_inga_dam_var = 30 } #tooltip ?
+	add_to_variable = { COG_bppid_industrial_complex_level = 1 } #tooltip ?
+}
+COG_resistance_and_compliance_in_state_update = { #?
+	set_temp_variable = { current_scope = event_target:state_scope.id }
+	if = {
+		limit = { check_variable = { current_scope = 1044.id } }
+		if = {
+			limit = { check_variable = { resistance_and_compliance = 1 } }
+			1044 = {
+				add_resistance = -10
+			}
+			1045 = {
+				add_resistance = -10
+			}
+		}
+		else_if = {
+			limit = { check_variable = { resistance_and_compliance = 2 } }
+			1044 = {
+				add_compliance = 10
+			}
+			1045 = {
+				add_compliance = 10
+			}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { current_scope = 1005.id } }
+		if = {
+			limit = { check_variable = { resistance_and_compliance = 1 } }
+			1005 = {
+				add_resistance = -10
+			}
+		}
+		else_if = {
+			limit = { check_variable = { resistance_and_compliance = 2 } }
+			1005 = {
+				add_compliance = 10
+			}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { current_scope = 1001.id } }
+		if = {
+			limit = { check_variable = { resistance_and_compliance = 1 } }
+			1001 = {
+				add_resistance = -10
+			}
+			977 = {
+				add_resistance = -10
+			}
+		}
+		else_if = {
+			limit = { check_variable = { resistance_and_compliance = 2 } }
+			1001 = {
+				add_compliance = 10
+			}
+			977 = {
+				add_compliance = 10
+			}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { current_scope = 1002.id } }
+		if = {
+			limit = { check_variable = { resistance_and_compliance = 1 } }
+			1002 = {
+				add_resistance = -10
+			}
+			1102 = {
+				add_resistance = -10
+			}
+		}
+		else_if = {
+			limit = { check_variable = { resistance_and_compliance = 2 } }
+			1002 = {
+				add_compliance = 10
+			}
+			1102 = {
+				add_compliance = 10
+			}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { current_scope = 931.id } }
+		if = {
+			limit = { check_variable = { resistance_and_compliance = 1 } }
+			931 = {
+				add_resistance = -10
+			}
+			922 = {
+				add_resistance = -10
+			}
+			1004 = {
+				add_resistance = -10
+			}
+		}
+		else_if = {
+			limit = { check_variable = { resistance_and_compliance = 2 } }
+			931 = {
+				add_compliance = 10
+			}
+			922 = {
+				add_compliance = 10
+			}
+			1004 = {
+				add_compliance = 10
+			}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { current_scope = 871.id } }
+		if = {
+			limit = { check_variable = { resistance_and_compliance = 1 } }
+			871 = {
+				add_resistance = -10
+			}
+		}
+		else_if = {
+			limit = { check_variable = { resistance_and_compliance = 2 } }
+			871 = {
+				add_compliance = 10
+			}
+		}
+	}
+}
+
+COG_install_some_stuff_PREVPREV = {
+	PREV.PREV = {
+		set_variable = { nw_CongoGoogleMaps = PREV.nw_CongoGoogleMaps }
+		set_variable = { COG_evolues_gain_var = PREV.COG_evolues_gain_var }
+		set_variable = { COG_local_farmers_program_count = PREV.COG_local_farmers_program_count }
+		set_variable = { COG_plant_new_soybean_varieties_count = PREV.COG_plant_new_soybean_varieties_count } #?
+		set_variable = { COG_bppid_industrial_complex_level = PREV.COG_bppid_industrial_complex_level }
+		set_variable = { COG_build_power_plant_on_inga_dam_var = PREV.COG_build_power_plant_on_inga_dam_var }
+		set_variable = { COG_build_inga_dam_var = PREV.COG_build_inga_dam_var }
+		set_variable = { COG_ctf_cotton_plantations_cost = PREV.COG_ctf_cotton_plantations_cost }
+		# set_variable = { COG_integrate_kingdom_decision_end = PREV.COG_integrate_kingdom_decision_end } #?
+	}
+	if = {
+		limit = { has_country_flag = COG_establish_khakistu_flag }
+		PREV.PREV = {
+			set_country_flag = COG_establish_khakistu_flag
+		}
+	}
+	if = { #?
+		limit = { has_country_flag = block_COG_recognition_of_congolese_church_focus }
+		PREV.PREV = {
+			set_country_flag = block_COG_recognition_of_congolese_church_focus
+		}
+	}
+	if = {
+		limit = { has_country_flag = COG_cotton_roads_flag }
+		PREV.PREV = {
+			set_country_flag = COG_cotton_roads_flag
+		}
+	}
+	if = { #?
+		limit = { has_country_flag = COG_management_of_union_miniere_company_flag }
+		PREV.PREV = {
+			set_country_flag = COG_management_of_union_miniere_company_flag
+		}
+	}
+	# if = { #?
+		# limit = { has_country_flag = COG_simon_kimbangu_political_advisor }
+		# PREV.PREV = {
+			# set_country_flag = COG_simon_kimbangu_political_advisor
+		# }
+	# }
+	# if = { #?
+		# limit = { has_country_flag = COG_george_lyndon_carpente_flag }
+		# PREV.PREV = {
+			# set_country_flag = COG_george_lyndon_carpente_flag
+		# }
+	# }
+	# if = { #?
+		# limit = { has_country_flag = COG_george_baker_political_advisor }
+		# PREV.PREV = {
+			# set_country_flag = COG_george_baker_political_advisor
+		# }
+	# }
+	# if = { #?
+		# limit = { has_country_flag = COG_plant_new_soybean_varieties_flag }
+		# PREV.PREV = {
+			# set_country_flag = COG_plant_new_soybean_varieties_flag
+		# }
+	# }
+	if = {
+		limit = { has_country_flag = COG_build_inga_dam_first_flag }
+		PREV.PREV = {
+			set_country_flag = COG_build_inga_dam_first_flag
+		}
+	}
+	if = {
+		limit = { has_country_flag = COG_build_inga_dam_second_flag }
+		PREV.PREV = {
+			set_country_flag = COG_build_inga_dam_second_flag
+		}
+	}
+	if = {
+		limit = { has_country_flag = COG_build_power_plant_on_inga_dam_first_flag }
+		PREV.PREV = {
+			set_country_flag = COG_build_power_plant_on_inga_dam_first_flag
+		}
+	}
+	if = {
+		limit = { has_country_flag = COG_build_power_plant_on_inga_dam_second_flag }
+		PREV.PREV = {
+			set_country_flag = COG_build_power_plant_on_inga_dam_second_flag
+		}
+	}
+	# if = { #?
+		# limit = { has_country_flag = COG_surveillance_of_tribes_leaders_flag }
+		# PREV.PREV = {
+			# set_country_flag = COG_surveillance_of_tribes_leaders_flag
+		# }
+	# }
+	# if = { #?
+		# limit = { has_country_flag = COG_restore_administrations_in_regions_flag }
+		# PREV.PREV = {
+			# set_country_flag = COG_restore_administrations_in_regions_flag
+		# }
+	# }
+	# if = { #?
+		# limit = { has_country_flag = COG_consecrate_country_flag }
+		# PREV.PREV = {
+			# set_country_flag = COG_consecrate_country_flag
+		# }
+	# }
+	# if = { #?
+		# limit = { has_country_flag = COG_consecrate_country_flag }
+		# PREV.PREV = {
+			# set_country_flag = COG_consecrate_country_flag
+		# }
+	# }
+	
+	# congo.10 !!
+	
+	if = {
+		limit = { has_dynamic_modifier = { modifier = COG_underdeveloped_tribal_agriculture } }
+		PREV.PREV = {
+			add_dynamic_modifier = { modifier = COG_underdeveloped_tribal_agriculture }
+			set_variable = { COG_udta_monthly_population = PREV.COG_udta_monthly_population }
+			set_variable = { COG_udta_consumer_goods_factor = PREV.COG_udta_consumer_goods_factor }
+			set_variable = { COG_udta_global_building_slots_factor = PREV.COG_udta_global_building_slots_factor }
+			set_variable = { COG_udta_production_speed_buildings_factor = PREV.COG_udta_production_speed_buildings_factor }
+		}
+	}
+	if = {
+		limit = { has_dynamic_modifier = { modifier = COG_congolese_coffee } }
+		PREV.PREV = {
+			add_dynamic_modifier = { modifier = COG_congolese_coffee }
+			set_variable = { COG_cc_army_morale_factor = PREV.COG_cc_army_morale_factor }
+			set_variable = { COG_cc_consumer_goods_factor = PREV.COG_cc_consumer_goods_factor }
+			set_variable = { COG_cc_production_factory_efficiency_gain_factor = PREV.COG_cc_production_factory_efficiency_gain_factor }
+		}
+	}
+	if = {
+		limit = { has_dynamic_modifier = { modifier = COG_export_of_domestic_products } }
+		PREV.PREV = {
+			add_dynamic_modifier = { modifier = COG_export_of_domestic_products }
+			set_variable = { COG_edp_political_power_factor = PREV.COG_edp_political_power_factor }
+			set_variable = { COG_edp_min_export = PREV.COG_edp_min_export }
+		}
+	}
+	if = {
+		limit = { has_dynamic_modifier = { modifier = COG_tropical_diseases } }
+		PREV.PREV = {
+			add_dynamic_modifier = { modifier = COG_tropical_diseases }
+			set_variable = { COG_td_monthly_population = PREV.COG_td_monthly_population }
+			set_variable = { COG_td_stability_factor = PREV.COG_td_stability_factor }
+		}
+	}
+}

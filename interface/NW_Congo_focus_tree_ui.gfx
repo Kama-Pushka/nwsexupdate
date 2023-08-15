@@ -1,0 +1,78 @@
+spriteTypes = {
+	
+	# progressbartype = {
+		# name = GFX_AM_progress_bar
+		# textureFile1 = "gfx/interface/AM_epilogue_stories/targets_bar_full.dds"
+		# textureFile2 = "gfx/interface/AM_epilogue_stories/targets_bar_empty.dds"
+		# size = { x = 206 y = 206 }
+		# effectFile = "gfx/FX/progress_radial.lua"
+		# horizontal = yes
+		# steps = 27
+	# }
+	progressbartype = {
+		name = "GFX_pie_chart_income_revenue"
+		textureFile1 = "gfx/interface/income_revenue.dds"
+		textureFile2 = "gfx/interface/empty_pie.dds" #empty_pie
+		size = { x = 100 y = 100 }
+		effectFile = "gfx/FX/progress_radial.lua"
+		# horizontal = yes
+		steps = 100
+	}
+	
+	spriteType = { # удал !!!
+		name = "GFX_congo_color_block"
+		texturefile = "gfx/interface/congo_gui/color.dds"
+		noOfFrames = 5
+	}
+	
+	spriteType = { # перемест !!!
+		name = "GFX_congo_texticon"
+		texturefile = "gfx/texticons/congo_texticon.dds"
+		legacy_lazy_load = no
+	}
+	
+	spriteType = { # удал !!!
+		name = "GFX_spain_bg_2"
+		texturefile = "gfx/interface/congo_gui/spain_bg_2.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_congo_background"
+		texturefile = "gfx/interface/congo_gui/congo_background.dds"
+	}
+	spriteType = {
+		name = "GFX_congo_background_comm"
+		texturefile = "gfx/interface/congo_gui/congo_background_comm.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_congo_state_295"
+		texturefile = "gfx/interface/congo_gui/congo_state_295.dds"
+		noOfFrames = 5
+	}
+	spriteType = {
+		name = "GFX_congo_state_538"
+		texturefile = "gfx/interface/congo_gui/congo_state_538.dds"
+		noOfFrames = 5
+	}
+	spriteType = {
+		name = "GFX_congo_state_718"
+		texturefile = "gfx/interface/congo_gui/congo_state_718.dds"
+		noOfFrames = 5
+	}
+	spriteType = {
+		name = "GFX_congo_state_886"
+		texturefile = "gfx/interface/congo_gui/congo_state_886.dds"
+		noOfFrames = 5
+	}
+	spriteType = {
+		name = "GFX_congo_state_915"
+		texturefile = "gfx/interface/congo_gui/congo_state_915.dds"
+		noOfFrames = 5
+	}
+	spriteType = {
+		name = "GFX_congo_state_1065"
+		texturefile = "gfx/interface/congo_gui/congo_state_1065.dds"
+		noOfFrames = 5
+	}
+}

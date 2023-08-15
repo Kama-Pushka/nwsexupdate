@@ -1,0 +1,279 @@
+################
+##### COG ######
+################
+
+COG_cotton_regime = {
+	icon = GFX_decision_category_infiltration
+	picture = GFX_decision_cat_picture_chi_infiltration
+
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		NOT = { has_completed_focus = Отбросить_этническую_борьбу }
+	}
+	
+	priority = { factor = 30 }
+	
+	visible_when_empty = yes
+	
+	#scripted_gui = nw_CongoGoogleMaps
+	
+    on_map_area = {
+        targets = { 295 886 1065 538 718 915 } #?
+        zoom = 350
+    }
+}
+
+COG_create_new_social_class_category = {
+	icon = GFX_decision_category_infiltration
+	picture = GFX_decision_cat_picture_chi_infiltration
+
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Введение_нового_социального_класса
+	}
+	
+	priority = { factor = 21 }
+	
+	visible_when_empty = yes
+}
+
+COG_agricultural_reform = {
+	icon = GFX_decision_category_infiltration
+	picture = GFX_decision_cat_picture_chi_infiltration
+
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Модернизация_сельского_хозяйства
+	}
+	
+	priority = { factor = 20 }
+	
+	visible_when_empty = yes
+}
+
+COG_export_of_domestic_products_category = {
+	icon = GFX_decision_category_infiltration
+	picture = GFX_decision_cat_picture_chi_infiltration
+
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Расширить_экспорт_внутренней_продукции
+	}
+	
+	priority = { factor = 10 }
+}
+
+COG_management_of_union_miniere_company = {
+	icon = GFX_decision_category_infiltration
+	picture = GFX_decision_cat_picture_chi_infiltration
+
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_country_flag = COG_management_of_union_miniere_company_flag
+	}
+	
+	priority = { factor = 10 }
+}
+
+COG_mechanization_of_mines = {
+	icon = GFX_decision_category_infiltration
+	picture = GFX_decision_cat_picture_chi_infiltration
+
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Механизация_производства_шахт
+	}
+	
+	priority = { factor = 10 }
+}
+
+# COG_construction_of_dams = {
+	# icon = GFX_decision_category_infiltration
+	# picture = GFX_decision_cat_picture_chi_infiltration
+
+	# allowed = {
+		# original_tag = COG
+	# }
+	# # visible = {
+		# # has_completed_focus = Строительство_плотин_Инга
+	# # }
+	
+	# priority = { factor = 10 }
+# }
+
+COG_restoration_of_administration_category = {
+	icon = GFX_decision_category_infiltration
+	picture = GFX_decision_cat_picture_chi_infiltration
+
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Восстановление_административного_аппарата
+	}
+	
+	priority = { factor = 15 }
+}
+
+COG_generic_irregular_army_category = {
+	icon = generic_trozkism
+	picture = GFX_decision_cat_picture_macedonian_organizations
+	
+	allowed = {		
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Призыв_племенных_ополченцев
+	}
+	
+	priority = 210
+}
+
+COG_african_pannationalism = { #name ?
+	icon = generic_propaganda
+	picture = GFX_decision_cat_generic_africa
+	
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Принять_чёрный_национализм
+	}
+	priority = 15
+	
+	on_map_area = {
+		target_array = global.africa
+		target_trigger = {
+			FROM = {
+				NOT = { is_controlled_by = ROOT }
+			}
+		}
+		zoom = 150
+	}
+}
+
+COG_formation_of_african_international = {
+	icon = generic_communism
+	picture = GFX_decision_cat_picture_macedonian_organizations
+	
+	allowed = {		
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Пригласить_идеологических_союзников
+	}
+	
+	priority = 10
+}
+
+COG_five_year_plan = {
+	#name = ALB_five_year_plan
+	#desc = ALB_five_year_plan_desc
+	icon = decision_generic_industrial
+	picture = GFX_decision_cat_generic_mefo_bills
+	
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_country_flag = COG_five_year_plan_flag
+	}
+	
+	priority = 15
+}
+
+COG_creating_administration_from_locals = {
+	icon = GFX_decision_category_infiltration
+	picture = GFX_decision_cat_picture_chi_infiltration
+	
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Разрешить_набор_местных_в_администрацию
+	}
+	
+	priority = 15
+}
+
+COG_interaction_with_belgium = { #bop ?
+	icon = GFX_decision_category_power_struggle
+	#picture = GFX_decision_cat_picture_chi_infiltration
+	
+	allowed = {
+		original_tag = COG
+	}
+	
+	priority = 15
+}
+
+COG_integration_of_african_kingdoms = {
+	icon = GFX_decision_category_power_struggle
+	picture = GFX_decision_cat_picture_chi_infiltration
+	
+	allowed = {
+		original_tag = COG
+	}
+	
+	visible = {
+		has_completed_focus = Возродить_федеративное_королевство
+	}
+	
+	priority = 15
+}
+
+COG_influence_in_africa_category = {
+	icon = GFX_decision_category_power_struggle
+	picture = GFX_decision_cat_picture_chi_infiltration
+	
+	allowed = {
+		original_tag = COG
+	}
+	
+	visible = {
+		has_completed_focus = Стать_центром_торговли_Африки
+	}
+	
+	priority = 15
+}
+
+COG_faith_in_the_prophet_simon_kimbangu = { #name ?
+	icon = GFX_decision_category_power_struggle
+	picture = GFX_decision_cat_picture_chi_infiltration
+	
+	allowed = {
+		original_tag = COG
+	}
+	
+	visible = {
+		has_completed_focus = Изгнать_белого_человека_в_землю
+	}
+	
+	priority = 15
+}
+
+COG_building_christian_state = { #уже было??
+	icon = GFX_decision_category_infiltration
+	picture = GFX_decision_cat_picture_chi_infiltration
+
+	allowed = {
+		original_tag = COG
+	}
+	visible = {
+		has_completed_focus = Второе_пришествие_Христа
+	}
+	
+	priority = { factor = 15 }
+}
