@@ -205,12 +205,12 @@ guiTypes = {
 			}
 		}
 		
-		iconType = {
-			name = "economic_income_revenue_pie"
-			quadTextureSprite = "GFX_pie_chart_income_revenue"
-			position = { x = 0 y = 0 }
-			#rotation = 180
-		}
+		# iconType = {
+			# name = "economic_income_revenue_pie"
+			# quadTextureSprite = "GFX_pie_chart_income_revenue"
+			# position = { x = 0 y = 0 }
+			# #rotation = 180
+		# }
 	}
 	
 	containerWindowType = {

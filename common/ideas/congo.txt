@@ -1347,7 +1347,7 @@ ideas = {
 			picture = generic_industrial_concern_2			
 			
 			available = {
-				has_completed_focus = Объединение_исследовательских_служб_INEAC
+				has_completed_focus = COG_INEAC_focus
 			}
 
 			allowed = {

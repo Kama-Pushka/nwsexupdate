@@ -15,7 +15,7 @@ scripted_gui = {
 		
 		triggers = {
 		    map_background_comm_visible = {
-				has_completed_focus = Отбросить_этническую_борьбу
+				has_completed_focus = COG_stop_ethnic_struggle
 			}
 			state_295_visible = {
 				controls_state = 295
@@ -76,7 +76,7 @@ scripted_gui = {
 			idea = {
 				image = "[GetGFXLoyaltyIdea]"
 			}
-			economic_income_revenue_pie = { frame = revenue_income_pie }
+			# economic_income_revenue_pie = { frame = revenue_income_pie }
 		}
 	}
 	

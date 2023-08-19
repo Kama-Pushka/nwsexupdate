@@ -524,18 +524,18 @@ country_event = { #Чёрная миссия
 	
 	option = {
 		name = congo.10.a
-		trigger = { is_subject_of = BEL } #???
+		trigger = { NOT = { has_government = fascism } } #is_subject_of = BEL
 		add_political_power = -30
-		effect_tooltip = { unlock_national_focus = Основать_кхакисту } # ?
+		effect_tooltip = { unlock_national_focus = COG_establish_khakista } # ?
 		custom_effect_tooltip = COG_simon_kimbangu_2_tt # name ?
-		set_country_flag = COG_establish_khakistu_flag
+		set_country_flag = COG_establish_khakista_flag
 	}
 	option = {
 		name = congo.10.b
 		trigger = { has_government = fascism } #??
 		add_political_power = 30
-		effect_tooltip = { unlock_national_focus = Основать_кхакисту } # ?
-		set_country_flag = COG_establish_khakistu_flag
+		effect_tooltip = { unlock_national_focus = COG_establish_khakista } # ?
+		set_country_flag = COG_establish_khakista_flag
 	}
 }
 
@@ -547,7 +547,7 @@ country_event = { #Чёрная миссия ?
 	immediate = { log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): event congo.11" }
 	
 	trigger = {
-		NOT = { has_completed_focus = Признание_конголезской_церкви }
+		NOT = { has_completed_focus = COG_recognition_of_congolese_church }
 		has_country_leader = { character = COG_pierre_ryckmans }
 	}
 	
@@ -561,7 +561,7 @@ country_event = { #Чёрная миссия ?
 	option = {
 		name = congo.11.b
 		add_political_power = -50
-		complete_national_focus = Признание_конголезской_церкви
+		complete_national_focus = COG_recognition_of_congolese_church
 		custom_effect_tooltip = COG_simon_kimbangu_3_tt # name ?
 	}
 }
@@ -1071,7 +1071,7 @@ country_event = { #Восстание рабочих в Конго
 				}
 				set_country_flag = { flag = focus_synchronization days = 7 value = 1 } #?
 				
-				complete_national_focus = Провозгласить_государство_рабочих
+				complete_national_focus = COG_proclaim_a_workers_state
 				activate_targeted_decision = { target = event_target:COG_old_overlord decision = COG_demand_independence } #?
 			}
 			OVERLORD = {
@@ -1211,7 +1211,7 @@ country_event = { #Неумелое управление
 	option = {
 		name = congo.34.a
 		if = {
-			limit = { has_completed_focus = Создание_профсоюзов_для_темнокожих }
+			limit = { has_completed_focus = COG_creating_unions_for_blacks }
 			# -10% к текущему уровню производства
 			random_owned_controlled_state = { #??
 				limit = { 
@@ -1313,7 +1313,7 @@ country_event = { #Устройство партии
 			ideology = communism
 		}
 		# комми становятся правящей партией !
-		complete_national_focus = Приезд_советников_из_Москвы
+		complete_national_focus = COG_advisors_from_moscow
 		SOV = { #?
 			add_opinion_modifier = {
 				target = ROOT
@@ -1336,7 +1336,7 @@ country_event = { #Устройство партии
 			ruling_party = trozkism
 			#elections_allowed = no
 		}
-		complete_national_focus = Принять_помощь_от_южноафриканских_профсоюзов
+		complete_national_focus = COG_accept_help_from_SAF_trade_unions
 		SAF = { #??
 			if = {
 				limit = { has_government = trozkism }
@@ -1406,7 +1406,7 @@ country_event = { #Коронация Педро VII
 	
 	option = {
 		name = congo.38.a
-		complete_national_focus = Пьер_VII
+		complete_national_focus = COG_pierre_VIII_du_Kongo
 		add_popularity = { 
 			ideology = monarchy 
 			popularity = 0.25
@@ -1431,7 +1431,7 @@ country_event = { #Реставрация королевства Конго ??
 	option = {
 		name = congo.39.a
 		add_political_power = 100
-		complete_national_focus = Создание_собственной_Республики
+		complete_national_focus = COG_create_a_congo_republic
 		#set_country_flag = COG_interaction_with_belgium_flag
 		unlock_decision_category_tooltip = COG_interaction_with_belgium
 		
@@ -2269,7 +2269,7 @@ country_event = { #Восстание кимбангистов
 				
 				# убрать двух полит.советников !!!
 				
-				complete_national_focus = Изгнать_белого_человека_в_землю
+				complete_national_focus = COG_banish_the_white_man
 				activate_targeted_decision = { target = event_target:COG_old_overlord decision = COG_demand_independence } #?
 			}
 			# телепортнуть одну OVERLORD дивизию если там is_ai = yes !!!

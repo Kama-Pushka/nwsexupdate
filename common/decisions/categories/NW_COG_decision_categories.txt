@@ -10,7 +10,7 @@ COG_cotton_regime = {
 		original_tag = COG
 	}
 	visible = {
-		NOT = { has_completed_focus = Отбросить_этническую_борьбу }
+		NOT = { has_completed_focus = COG_stop_ethnic_struggle }
 	}
 	
 	priority = { factor = 30 }
@@ -33,7 +33,7 @@ COG_create_new_social_class_category = {
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Введение_нового_социального_класса
+		has_completed_focus = COG_create_a_new_social_class
 	}
 	
 	priority = { factor = 21 }
@@ -49,7 +49,7 @@ COG_agricultural_reform = {
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Модернизация_сельского_хозяйства
+		has_completed_focus = COG_modernization_of_agriculture
 	}
 	
 	priority = { factor = 20 }
@@ -65,7 +65,7 @@ COG_export_of_domestic_products_category = {
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Расширить_экспорт_внутренней_продукции
+		has_completed_focus = COG_expand_export_of_domestic_products
 	}
 	
 	priority = { factor = 10 }
@@ -93,7 +93,7 @@ COG_mechanization_of_mines = {
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Механизация_производства_шахт
+		has_completed_focus = COG_mechanization_of_mine_production
 	}
 	
 	priority = { factor = 10 }
@@ -107,7 +107,7 @@ COG_mechanization_of_mines = {
 		# original_tag = COG
 	# }
 	# # visible = {
-		# # has_completed_focus = Строительство_плотин_Инга
+		# # has_completed_focus = COG_build_inga_dams
 	# # }
 	
 	# priority = { factor = 10 }
@@ -121,7 +121,7 @@ COG_restoration_of_administration_category = {
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Восстановление_административного_аппарата
+		has_completed_focus = COG_restoration_of_administration
 	}
 	
 	priority = { factor = 15 }
@@ -135,7 +135,7 @@ COG_generic_irregular_army_category = {
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Призыв_племенных_ополченцев
+		has_completed_focus = COG_revolutionary_militia
 	}
 	
 	priority = 210
@@ -149,7 +149,7 @@ COG_african_pannationalism = { #name ?
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Принять_чёрный_национализм
+		has_completed_focus = COG_black_nationalism
 	}
 	priority = 15
 	
@@ -172,7 +172,7 @@ COG_formation_of_african_international = {
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Пригласить_идеологических_союзников
+		has_completed_focus = COG_invite_ideological_allies
 	}
 	
 	priority = 10
@@ -202,7 +202,7 @@ COG_creating_administration_from_locals = {
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Разрешить_набор_местных_в_администрацию
+		has_completed_focus = COG_recruitment_of_people_to_administration
 	}
 	
 	priority = 15
@@ -228,7 +228,7 @@ COG_integration_of_african_kingdoms = {
 	}
 	
 	visible = {
-		has_completed_focus = Возродить_федеративное_королевство
+		has_completed_focus = COG_restore_the_federal_kingdom
 	}
 	
 	priority = 15
@@ -243,7 +243,7 @@ COG_influence_in_africa_category = {
 	}
 	
 	visible = {
-		has_completed_focus = Стать_центром_торговли_Африки
+		has_completed_focus = COG_become_africas_trade_hub
 	}
 	
 	priority = 15
@@ -258,7 +258,7 @@ COG_faith_in_the_prophet_simon_kimbangu = { #name ?
 	}
 	
 	visible = {
-		has_completed_focus = Изгнать_белого_человека_в_землю
+		has_completed_focus = COG_banish_the_white_man
 	}
 	
 	priority = 15
@@ -272,7 +272,7 @@ COG_building_christian_state = { #уже было??
 		original_tag = COG
 	}
 	visible = {
-		has_completed_focus = Второе_пришествие_Христа
+		has_completed_focus = COG_the_second_coming_of_christ
 	}
 	
 	priority = { factor = 15 }

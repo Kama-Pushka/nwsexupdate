@@ -8,7 +8,7 @@ scripted_diplomatic_actions = {
 			#ROOT = { original_tag = COG }
 		}
 		visible = {		#The target country
-			ROOT = { original_tag = COG has_completed_focus = Вернуться_к_добыче_слоновьей_кости }
+			ROOT = { original_tag = COG has_completed_focus = COG_back_to_ivory_mining }
 			NOT = { has_opinion_modifier = COG_sale_of_ivory }
 			# в on_action если законч слоны !!
 		}

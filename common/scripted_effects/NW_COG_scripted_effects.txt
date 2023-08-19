@@ -144,7 +144,7 @@ TETTETETET = {
 	# }
 	# log = "[?global.year]"
 	# if = {
-					# limit = { has_completed_focus = Изгнать_белого_человека_в_землю has_war = yes }
+					# limit = { has_completed_focus = COG_banish_the_white_man has_war = yes }
 					# every_enemy_country = {
 						# limit = {
 							# capital_scope = { is_on_continent = europe }
@@ -266,7 +266,29 @@ TETTETETET = {
 	# }
 	# }
 	
-	activate_targeted_decision = { target = 295 decision = COG_state_urbanization_decision }
+	# activate_targeted_decision = { target = 295 decision = COG_state_urbanization_decision }
+	
+	#SIK = {
+		883 = {
+			ROOT = {
+					create_wargoal = {
+						type = take_state_focus
+						target = PREV
+						generator = { 883 }
+					}
+					add_ai_strategy = {
+						type = antagonize
+						id = PREV
+						value = 200
+					}
+					add_ai_strategy = {
+						type = declare_war
+						id = PREV
+						value = 200
+					}
+			}
+		}
+	#}
 }
 
 COG_update_administration_of_tribal_leaders_idea = { #name ?
@@ -329,7 +351,7 @@ COG_cotton_roads_lvl_update = {
 	}
 	
 	if = { #?
-		limit = { has_completed_focus = Поддержка_маканда }
+		limit = { has_completed_focus = COG_support_for_makand }
 		meta_effect = {
 			text = {
 				add_ideas = COG_cotton_roads_lvl_[LVL]_trait
@@ -361,7 +383,7 @@ COG_build_inga_dam_update = {
 }
 COG_build_power_plant_on_inga_dam_update = {
 	if = {
-		limit = { has_completed_focus = Строительство_гидроэлектростанций }
+		limit = { has_completed_focus = COG_build_of_hpps }
 		custom_effect_tooltip = COG_build_power_plant_on_inga_dam_update_tt #name ?
 	}
 	add_to_variable = { COG_build_power_plant_on_inga_dam_var = 30 } #tooltip ?
@@ -491,8 +513,8 @@ COG_resistance_and_compliance_in_state_update = { #?
 	}
 }
 
-COG_install_some_stuff_PREVPREV = {
-	PREV.PREV = {
+COG_install_some_stuff_PREVPREV = { #? !
+	PREV = {
 		set_variable = { nw_CongoGoogleMaps = PREV.nw_CongoGoogleMaps }
 		set_variable = { COG_evolues_gain_var = PREV.COG_evolues_gain_var }
 		set_variable = { COG_local_farmers_program_count = PREV.COG_local_farmers_program_count }
@@ -502,109 +524,108 @@ COG_install_some_stuff_PREVPREV = {
 		set_variable = { COG_build_inga_dam_var = PREV.COG_build_inga_dam_var }
 		set_variable = { COG_ctf_cotton_plantations_cost = PREV.COG_ctf_cotton_plantations_cost }
 		# set_variable = { COG_integrate_kingdom_decision_end = PREV.COG_integrate_kingdom_decision_end } #?
+		country_event = { id = congo.10 days = 30 random_days = 365 } #??
 	}
 	if = {
-		limit = { has_country_flag = COG_establish_khakistu_flag }
-		PREV.PREV = {
-			set_country_flag = COG_establish_khakistu_flag
+		limit = { has_country_flag = COG_establish_khakista_flag }
+		PREV = {
+			set_country_flag = COG_establish_khakista_flag
 		}
 	}
 	if = { #?
 		limit = { has_country_flag = block_COG_recognition_of_congolese_church_focus }
-		PREV.PREV = {
+		PREV = {
 			set_country_flag = block_COG_recognition_of_congolese_church_focus
 		}
 	}
 	if = {
 		limit = { has_country_flag = COG_cotton_roads_flag }
-		PREV.PREV = {
+		PREV = {
 			set_country_flag = COG_cotton_roads_flag
 		}
 	}
 	if = { #?
 		limit = { has_country_flag = COG_management_of_union_miniere_company_flag }
-		PREV.PREV = {
+		PREV = {
 			set_country_flag = COG_management_of_union_miniere_company_flag
 		}
 	}
 	# if = { #?
 		# limit = { has_country_flag = COG_simon_kimbangu_political_advisor }
-		# PREV.PREV = {
+		# PREV = {
 			# set_country_flag = COG_simon_kimbangu_political_advisor
 		# }
 	# }
 	# if = { #?
 		# limit = { has_country_flag = COG_george_lyndon_carpente_flag }
-		# PREV.PREV = {
+		# PREV = {
 			# set_country_flag = COG_george_lyndon_carpente_flag
 		# }
 	# }
 	# if = { #?
 		# limit = { has_country_flag = COG_george_baker_political_advisor }
-		# PREV.PREV = {
+		# PREV = {
 			# set_country_flag = COG_george_baker_political_advisor
 		# }
 	# }
 	# if = { #?
 		# limit = { has_country_flag = COG_plant_new_soybean_varieties_flag }
-		# PREV.PREV = {
+		# PREV = {
 			# set_country_flag = COG_plant_new_soybean_varieties_flag
 		# }
 	# }
 	if = {
 		limit = { has_country_flag = COG_build_inga_dam_first_flag }
-		PREV.PREV = {
+		PREV = {
 			set_country_flag = COG_build_inga_dam_first_flag
 		}
 	}
 	if = {
 		limit = { has_country_flag = COG_build_inga_dam_second_flag }
-		PREV.PREV = {
+		PREV = {
 			set_country_flag = COG_build_inga_dam_second_flag
 		}
 	}
 	if = {
 		limit = { has_country_flag = COG_build_power_plant_on_inga_dam_first_flag }
-		PREV.PREV = {
+		PREV = {
 			set_country_flag = COG_build_power_plant_on_inga_dam_first_flag
 		}
 	}
 	if = {
 		limit = { has_country_flag = COG_build_power_plant_on_inga_dam_second_flag }
-		PREV.PREV = {
+		PREV = {
 			set_country_flag = COG_build_power_plant_on_inga_dam_second_flag
 		}
 	}
 	# if = { #?
 		# limit = { has_country_flag = COG_surveillance_of_tribes_leaders_flag }
-		# PREV.PREV = {
+		# PREV = {
 			# set_country_flag = COG_surveillance_of_tribes_leaders_flag
 		# }
 	# }
 	# if = { #?
 		# limit = { has_country_flag = COG_restore_administrations_in_regions_flag }
-		# PREV.PREV = {
+		# PREV = {
 			# set_country_flag = COG_restore_administrations_in_regions_flag
 		# }
 	# }
 	# if = { #?
 		# limit = { has_country_flag = COG_consecrate_country_flag }
-		# PREV.PREV = {
+		# PREV = {
 			# set_country_flag = COG_consecrate_country_flag
 		# }
 	# }
-	# if = { #?
+	# if = { #? (флаг потерялся !)
 		# limit = { has_country_flag = COG_consecrate_country_flag }
-		# PREV.PREV = {
+		# PREV = {
 			# set_country_flag = COG_consecrate_country_flag
 		# }
 	# }
-	
-	# congo.10 !!
 	
 	if = {
 		limit = { has_dynamic_modifier = { modifier = COG_underdeveloped_tribal_agriculture } }
-		PREV.PREV = {
+		PREV = {
 			add_dynamic_modifier = { modifier = COG_underdeveloped_tribal_agriculture }
 			set_variable = { COG_udta_monthly_population = PREV.COG_udta_monthly_population }
 			set_variable = { COG_udta_consumer_goods_factor = PREV.COG_udta_consumer_goods_factor }
@@ -614,7 +635,7 @@ COG_install_some_stuff_PREVPREV = {
 	}
 	if = {
 		limit = { has_dynamic_modifier = { modifier = COG_congolese_coffee } }
-		PREV.PREV = {
+		PREV = {
 			add_dynamic_modifier = { modifier = COG_congolese_coffee }
 			set_variable = { COG_cc_army_morale_factor = PREV.COG_cc_army_morale_factor }
 			set_variable = { COG_cc_consumer_goods_factor = PREV.COG_cc_consumer_goods_factor }
@@ -623,7 +644,7 @@ COG_install_some_stuff_PREVPREV = {
 	}
 	if = {
 		limit = { has_dynamic_modifier = { modifier = COG_export_of_domestic_products } }
-		PREV.PREV = {
+		PREV = {
 			add_dynamic_modifier = { modifier = COG_export_of_domestic_products }
 			set_variable = { COG_edp_political_power_factor = PREV.COG_edp_political_power_factor }
 			set_variable = { COG_edp_min_export = PREV.COG_edp_min_export }
@@ -631,7 +652,7 @@ COG_install_some_stuff_PREVPREV = {
 	}
 	if = {
 		limit = { has_dynamic_modifier = { modifier = COG_tropical_diseases } }
-		PREV.PREV = {
+		PREV = {
 			add_dynamic_modifier = { modifier = COG_tropical_diseases }
 			set_variable = { COG_td_monthly_population = PREV.COG_td_monthly_population }
 			set_variable = { COG_td_stability_factor = PREV.COG_td_stability_factor }

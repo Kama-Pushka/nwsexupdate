@@ -110,7 +110,7 @@ characters={
 				original_tag = COG
 			}
 			available = {
-				has_completed_focus = Доминируй_чтобы_служить
+				has_completed_focus = COG_dominate_to_serve
 			}
 			visible = {
 				NOT = { has_country_leader = { character = COG_leonard_mpoyi } }
@@ -142,7 +142,7 @@ characters={
 				original_tag = COG
 			}
 			available = {
-				has_completed_focus = Объединение_исследовательских_служб_INEAC
+				has_completed_focus = COG_INEAC_focus
 				NOT = { has_war_with = BEL } #полное удаление ??
 			}
 			traits = {
@@ -246,7 +246,7 @@ characters={
 				original_tag = COG
 			}
 			available = {
-				has_completed_focus = Создание_профсоюзов_для_белых
+				has_completed_focus = COG_creating_unions_for_whites
 			}
 			traits = {
 				white_unions_leader 
@@ -276,7 +276,7 @@ characters={
 				original_tag = COG
 			}
 			available = {
-				has_completed_focus = Основать_кхакисту
+				has_completed_focus = COG_establish_khakista
 			}
 			visible = {
 				#has_country_flag = COG_simon_kimbangu_political_advisor
@@ -298,7 +298,7 @@ characters={
 			logistics_skill = 2
 			legacy_id = -1
 			visible = { #?
-				has_completed_focus = Основать_кхакисту
+				has_completed_focus = COG_establish_khakista
 			}
 		}
 	}
@@ -377,7 +377,7 @@ characters={
 				#has_government = fascism
 			}
 			available = {
-				has_completed_focus = Двенадцать_апостолов_пророка_Кимбангу
+				has_completed_focus = COG_the_twelve_apostles_of_the_prophet_kimbangu
 			}
 			traits = {
 				god_the_father
@@ -422,7 +422,7 @@ characters={
 				#has_government = fascism
 			}
 			available = {	
-				has_completed_focus = Двенадцать_апостолов_пророка_Кимбангу
+				has_completed_focus = COG_the_twelve_apostles_of_the_prophet_kimbangu
 			}
 			traits = {
 				god_the_son
@@ -467,7 +467,7 @@ characters={
 				#has_government = fascism
 			}
 			available = {	
-				has_completed_focus = Двенадцать_апостолов_пророка_Кимбангу
+				has_completed_focus = COG_the_twelve_apostles_of_the_prophet_kimbangu
 			}
 			traits = {
 				holy_spirit
@@ -511,7 +511,7 @@ characters={
 				#has_government = fascism
 			}
 			available = {	
-				has_completed_focus = Двенадцать_апостолов_пророка_Кимбангу
+				has_completed_focus = COG_the_twelve_apostles_of_the_prophet_kimbangu
 			}
 			traits = {
 				mother_of_god

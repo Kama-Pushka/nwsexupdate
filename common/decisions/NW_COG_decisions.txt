@@ -7,7 +7,7 @@ nw_political_actions = {
 		}
 		available = { # ??
 			if = {
-				limit = { NOT = { has_completed_focus = Отбросить_этническую_борьбу } }
+				limit = { NOT = { has_completed_focus = COG_stop_ethnic_struggle } }
 				FROM = { 
 					custom_trigger_tooltip = {
 						tooltip = COG_loyalty_lvl_more_than_1_tt #name ?
@@ -19,7 +19,7 @@ nw_political_actions = {
 		visible = {
 		}
 		target_root_trigger = {
-			has_completed_focus = Забрать_пустые_земли
+			has_completed_focus = COG_take_unused_lands
 		}
 		target_trigger = {
 			FROM = { is_controlled_by = ROOT }
@@ -41,7 +41,7 @@ nw_political_actions = {
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName] ([Root.GetTag]): remove decision COG_take_land_from_tribes ([FROM.GetID] [FROM.GetName])"
 			if = {
-				limit = { NOT = { has_completed_focus = Отбросить_этническую_борьбу } }
+				limit = { NOT = { has_completed_focus = COG_stop_ethnic_struggle } }
 				FROM = {
 					add_extra_state_shared_building_slots = 1 #? !
 					set_temp_variable = { lvl = COG_loyalty_lvl_var } # ?
@@ -77,7 +77,7 @@ nw_political_actions = {
 		}
 		available = { # ??
 			if = {
-				limit = { NOT = { has_completed_focus = Отбросить_этническую_борьбу } }
+				limit = { NOT = { has_completed_focus = COG_stop_ethnic_struggle } }
 				FROM = { 
 					custom_trigger_tooltip = {
 						tooltip = COG_loyalty_lvl_more_than_1_tt #name ?
@@ -102,7 +102,7 @@ nw_political_actions = {
 		visible = {
 		}
 		target_root_trigger = {
-			has_completed_focus = Добыча_каучука
+			has_completed_focus = COG_rubber_mining
 		}
 
 		state_target = yes
@@ -141,7 +141,7 @@ nw_political_actions = {
 		}
 		available = { # ??
 			if = {
-				limit = { NOT = { has_completed_focus = Отбросить_этническую_борьбу } }
+				limit = { NOT = { has_completed_focus = COG_stop_ethnic_struggle } }
 				FROM = { 
 					custom_trigger_tooltip = {
 						tooltip = COG_loyalty_lvl_more_than_1_tt #name ?
@@ -166,7 +166,7 @@ nw_political_actions = {
 		visible = {
 		}
 		target_root_trigger = {
-			has_completed_focus = Добыча_пальмового_масла
+			has_completed_focus = COG_palm_oil_extraction
 		}
 
 		state_target = yes
@@ -205,7 +205,7 @@ nw_political_actions = {
 		}
 		available = { # ??
 			if = {
-				limit = { NOT = { has_completed_focus = Отбросить_этническую_борьбу } }
+				limit = { NOT = { has_completed_focus = COG_stop_ethnic_struggle } }
 				FROM = { 
 					custom_trigger_tooltip = {
 						tooltip = COG_loyalty_lvl_more_than_1_tt #name ?
@@ -230,7 +230,7 @@ nw_political_actions = {
 		visible = {
 		}
 		target_root_trigger = {
-			has_completed_focus = Добыча_хлопка
+			has_completed_focus = COG_cotton_extraction
 		}
 
 		state_target = yes
@@ -257,7 +257,7 @@ nw_political_actions = {
 			add_to_variable = { COG_agricultural_research_points_var = 10 tooltip = COG_agricultural_research_points_tooltip }
 			#??(clamp)
 			if = { #?
-				limit = { has_completed_focus = Хлопковые_дороги }
+				limit = { has_completed_focus = COG_cotton_roads }
 				FROM = {
 					add_building_construction = {
 						type = infrastructure
@@ -286,8 +286,8 @@ nw_political_actions = {
 		target_root_trigger = {
 			has_war = yes
 			OR = { #??
-				has_completed_focus = Провозгласить_государство_рабочих
-				has_completed_focus = Изгнать_белого_человека_в_землю
+				has_completed_focus = COG_proclaim_a_workers_state
+				has_completed_focus = COG_banish_the_white_man
 			}
 		}
 		
@@ -504,7 +504,7 @@ COG_agricultural_reform = {
 		icon = generic_nationalism
 
 		available = { # visible
-			has_completed_focus = Добыча_хлопка
+			has_completed_focus = COG_cotton_extraction
 		}
 		
 		custom_cost_trigger = {
@@ -544,7 +544,7 @@ COG_agricultural_reform = {
 		
 		available = {
 			if = {
-				limit = { NOT = { has_completed_focus = Отбросить_этническую_борьбу } }
+				limit = { NOT = { has_completed_focus = COG_stop_ethnic_struggle } }
 				FROM = {
 					custom_trigger_tooltip = {
 						tooltip = COG_loyalty_lvl_more_than_3_tt #name ?
@@ -556,7 +556,7 @@ COG_agricultural_reform = {
 		visible = {
 		}
 		target_root_trigger = {
-			has_completed_focus = Программа_местных_фермеров
+			has_completed_focus = COG_local_farmers_program
 		}
 
 		state_target = yes
@@ -603,7 +603,7 @@ COG_agricultural_reform = {
 			#hidden_effect = {
 				if = {
 					limit = {
-						has_completed_focus = Распространение_новых_сортов_сои
+						has_completed_focus = COG_plant_new_soybean_varieties
 						NOT = { has_country_flag = COG_plant_new_soybean_varieties_flag } # ?
 					}
 					random_controlled_state = {
@@ -631,7 +631,7 @@ COG_agricultural_reform = {
 			}
 		}
 		visible = {
-			has_completed_focus = Программа_местных_фермеров
+			has_completed_focus = COG_local_farmers_program
 		}
 
 		cost = 100
@@ -691,7 +691,7 @@ COG_agricultural_reform = {
 		icon = generic_nationalism
 		
 		visible = {
-			has_completed_focus = Культивация_кофе
+			has_completed_focus = COG_coffee_cultivation
 		}
 
 		custom_cost_trigger = {
@@ -720,10 +720,10 @@ COG_agricultural_reform = {
 		icon = generic_nationalism
 		
 		available = {
-			has_completed_focus = Расширить_экспорт_внутренней_продукции
+			has_completed_focus = COG_expand_export_of_domestic_products
 		}
 		visible = {
-			has_completed_focus = Культивация_кофе
+			has_completed_focus = COG_coffee_cultivation
 		}
 
 		custom_cost_trigger = {
@@ -752,7 +752,7 @@ COG_agricultural_reform = {
 		icon = generic_nationalism
 		
 		visible = {
-			has_completed_focus = Культивация_кофе
+			has_completed_focus = COG_coffee_cultivation
 		}
 
 		custom_cost_trigger = {
@@ -783,7 +783,7 @@ COG_agricultural_reform = {
 		
 		available = {
 			if = {
-				limit = { NOT = { has_completed_focus = Отбросить_этническую_борьбу } }
+				limit = { NOT = { has_completed_focus = COG_stop_ethnic_struggle } }
 				FROM = {
 					custom_trigger_tooltip = {
 						tooltip = COG_loyalty_lvl_more_than_3_tt #name ?
@@ -795,7 +795,7 @@ COG_agricultural_reform = {
 		visible = {
 		}
 		target_root_trigger = {
-			has_completed_focus = Создание_больничных_диспансеров
+			has_completed_focus = COG_creation_of_hospitals
 		}
 		target_trigger = {
 			FROM = { is_controlled_by = ROOT }
@@ -1085,7 +1085,7 @@ economy_decisions = { # COG_construction_of_dams
 			original_tag = COG
 		}
 		visible = {
-			has_completed_focus = Строительство_плотин_Инга
+			has_completed_focus = COG_build_inga_dams
 			NOT = { has_country_flag = COG_build_inga_dam_second_flag }
 		}
 		
@@ -1145,7 +1145,7 @@ economy_decisions = { # COG_construction_of_dams
 			}
 		}
 		visible = {
-			has_completed_focus = Строительство_гидроэлектростанций
+			has_completed_focus = COG_build_of_hpps
 			NOT = { has_country_flag = COG_build_power_plant_on_inga_dam_second_flag }
 		}
 		
@@ -2305,13 +2305,13 @@ COG_influence_in_africa_category = {
 		target_array = global.countries #??
 		target_root_trigger = {
 			OR = {
-				has_completed_focus = Искать_союзников_в_Африке
-				has_completed_focus = Установить_связи_с_Европой
+				has_completed_focus = COG_establish_relationship_with_africa
+				has_completed_focus = COG_establish_relationship_with_europe
 			}
 		}
 		target_trigger = {
 			if = {
-				limit = { has_completed_focus = Искать_союзников_в_Африке }
+				limit = { has_completed_focus = COG_establish_relationship_with_africa }
 				FROM = {
 					capital_scope = { is_on_continent = africa }
 					is_subject = no
@@ -2320,7 +2320,7 @@ COG_influence_in_africa_category = {
 				}
 			}
 			else_if = {
-				limit = { has_completed_focus = Установить_связи_с_Европой }
+				limit = { has_completed_focus = COG_establish_relationship_with_europe }
 				FROM = {
 					capital_scope = { is_on_continent = europe }
 					NOT = { tag = BEL tag = COG }
@@ -2515,7 +2515,7 @@ COG_building_christian_state = {
 		icon = generic_nationalism
 		
 		available = {
-			has_completed_focus = Двенадцать_апостолов_пророка_Кимбангу
+			has_completed_focus = COG_the_twelve_apostles_of_the_prophet_kimbangu
 			has_country_flag = COG_consecrate_country_flag
 		}
 
