@@ -269,26 +269,36 @@ TETTETETET = {
 	# activate_targeted_decision = { target = 295 decision = COG_state_urbanization_decision }
 	
 	#SIK = {
-		883 = {
-			ROOT = {
-					create_wargoal = {
-						type = take_state_focus
-						target = PREV
-						generator = { 883 }
-					}
-					add_ai_strategy = {
-						type = antagonize
-						id = PREV
-						value = 200
-					}
-					add_ai_strategy = {
-						type = declare_war
-						id = PREV
-						value = 200
-					}
-			}
-		}
+		# 883 = {
+			# ROOT = {
+					# create_wargoal = {
+						# type = take_state_focus
+						# target = PREV
+						# generator = { 883 }
+					# }
+					# add_ai_strategy = {
+						# type = antagonize
+						# id = PREV
+						# value = 200
+					# }
+					# add_ai_strategy = {
+						# type = declare_war
+						# id = PREV
+						# value = 200
+					# }
+			# }
+		# }
 	#}
+	
+	# add_political_power = 100
+	# complete_national_focus = COG_dominate_to_serve
+	# uncomplete_national_focus = COG_dominate_to_serve
+	uncomplete_national_focus = {
+		focus = COG_create_a_congo_republic
+		uncomplete_children = yes
+	}
+	complete_national_focus = COG_pierre_VIII_du_Kongo
+	# mark_focus_tree_layout_dirty = yes
 }
 
 COG_update_administration_of_tribal_leaders_idea = { #name ?
